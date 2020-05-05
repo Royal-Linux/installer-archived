@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## EasyOptions Example
 ## Copyright (C) Someone
