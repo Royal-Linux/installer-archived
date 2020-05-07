@@ -1,0 +1,11 @@
+# ArchLinux ISOs, checksums etc.
+archlinux-*-x86_64.iso
+sha1sums.txt
+
+# ArchRoyal-generated dirs
+logs
+out
+
+# ArchRoyal ISOs, checksums etc.
+archroyal-*-x86_64.iso
+archroyal-*-x86_64.iso.*

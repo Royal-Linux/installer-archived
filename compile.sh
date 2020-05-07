@@ -3,7 +3,7 @@
 ## Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
 ## Licensed under GPL v3.0
 ##
-##     @script.name [option] ARGUMENTS...
+##     @script.name [OPTION] ARGUMENTS...
 ##
 ## Options:
 ##         -c, --no-color      Disable color output
