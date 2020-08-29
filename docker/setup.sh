@@ -15,16 +15,8 @@ project_dir="/usr/src/app"
 aur_snapshot_link="https://aur.archlinux.org/cgit/aur.git/snapshot/"
 
 # Packages to add to local repo
+# TODO: Update local aur dependencies
 local_aur_packages=(
-    'numix-icon-theme-git'
-    'numix-circle-icon-theme-git'
-    'oh-my-zsh-git'
-    'opensnap'
-    'perl-linux-desktopfiles'
-    'obmenu-generator'
-    'yay-bin'
-    'openbox-themes'
-    'arch-wiki-cli'
 )
 
 # Dependencies with same name packages
@@ -61,7 +53,7 @@ check_dependencies() {
 local_repo_builds() {
     echo "Building AUR packages for local repo ..."
 
-    # Begin build loop 
+    # Begin build loop
     if [ ! "$(ls /home/builder/ | grep "${local_aur_packages[8]}")" ]; then
         pacman -R --noconfirm yay
         for pkg in "${local_aur_packages[@]}"; do
