@@ -21,16 +21,8 @@ out_dir="${project_dir}"/out # Directory for generated ISO
 # archroyal_iso_release="0.0.1"  # from ENV
 archroyal_iso_name="archroyal-${archroyal_iso_release}-x86_64.iso"
 
+# TODO: Update local aur dependencies
 local_aur_packages=(
-    'numix-icon-theme-git'
-    'numix-circle-icon-theme-git'
-    'oh-my-zsh-git'
-    'opensnap'
-    'perl-linux-desktopfiles'
-    'obmenu-generator'
-    'yay-bin'
-    'openbox-themes'
-    'arch-wiki-cli'
 )
 
 init() {
