@@ -24,17 +24,32 @@
 ##         Exit 6: Failed to build/remove docker image (build_docker_image)
 ##
 
+# Exit on error
+set -o errexit
+set -o errtrace
+
+# Enable tracing of what gets executed
+# set -o xtrace
+
 ROOT=$(dirname $0)
 source "$ROOT/util/opts/opts.sh" || exit # Bash implementation, slower
 
 # Boolean and parameter options
-[[ -n "$no_color" ]] && echo "Option specified: --no-color"
-[[ -n "$docker" ]] && echo "Option specified: --docker"
-[[ -n "$no_option" ]] && echo "Option specified: --docker"
-[[ -n "$output_dir" ]] && echo "Option specified: --output-dir is $output_dir"
-[[ -n "$log_dir" ]] && echo "Option specified: --log-dir is $log_dir"
+[[ -n "$no_color" ]] && disable_color
 
-# Arguments
-for argument in "${arguments[@]}"; do
-    echo "Argument specified: $argument"
-done
+# Clears the screen and adds a banner
+prettify() {
+    # Source colors
+    colors
+
+    clear
+    echo -e "${color_white}-- Anarchy Linux --${color_blank}"
+    echo -e ""
+}
+
+set_version() {
+    # Label must be up to 11 chars long (incremental numbers)
+    anarchy_iso_label="ANARCHY110"
+    anarchy_iso_release="1.1.0"
+    anarchy_iso_name="anarchy-${anarchy_iso_release}-x86_64.iso"
+}

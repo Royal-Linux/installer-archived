@@ -26,7 +26,6 @@ init() {
     done
 
     # shellcheck source=/etc/archroyal.sh
-    # TODO: Define main config for Arch Royal installation process
     source "${archroyal_config}"
     language
     export reload=true
