@@ -281,7 +281,7 @@ graphics() {
 			if [ "$?" -eq "0" ]; then
 				if [ "$GPU" == "$gr0" ]; then
 					pci_id=$(lspci -nn | grep "VGA" | egrep -o '\[.*\]' | awk '{print $NF}' | sed 's/.*://;s/]//')
-					if (grep <"${ArchRoyal_directory}"/etc/nvidia390.xx "$pci_id" &>/dev/null); then
+					if (grep <"${archroyal_directory}"/etc/nvidia390.xx "$pci_id" &>/dev/null); then
 						if (dialog --yes-button "$yes" --no-button "$no" --yesno "\n$nvidia_390msg" 10 60); then
 							if [ "$kernel" == "lts" ]; then
 								GPU="nvidia-390xx-lts"
@@ -291,7 +291,7 @@ graphics() {
 							GPU+=" nvidia-390xx-libgl nvidia-390xx-utils nvidia-settings"
 							break
 						fi
-					elif (grep <"${ArchRoyal_directory}"/etc/nvidia340.xx "$pci_id" &>/dev/null); then
+					elif (grep <"${archroyal_directory}"/etc/nvidia340.xx "$pci_id" &>/dev/null); then
 						if (dialog --yes-button "$yes" --no-button "$no" --yesno "\n$nvidia_340msg" 10 60); then
 							if [ "$kernel" == "lts" ]; then
 								GPU="nvidia-340xx-lts"
@@ -396,25 +396,25 @@ graphics() {
 
 config_env() {
 
-	cp -r "${ArchRoyal_directory}"/extra/fonts/ttf-zekton-rg "$ARCH"/usr/share/fonts
+	cp -r "${archroyal_directory}"/extra/fonts/ttf-zekton-rg "$ARCH"/usr/share/fonts
 	chmod -R 755 "$ARCH"/usr/share/fonts/ttf-zekton-rg
 	arch-chroot "$ARCH" fc-cache -f
-	cp "${ArchRoyal_directory}"/extra/fonts/unifont/unifont-11.0.02.ttf "$ARCH"/usr/share/fonts/TTF
-	cp "${ArchRoyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/root/.face
-	cp "${ArchRoyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/etc/skel/.face
-	cp "${ArchRoyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/usr/share/pixmaps
+	cp "${archroyal_directory}"/extra/fonts/unifont/unifont-11.0.02.ttf "$ARCH"/usr/share/fonts/TTF
+	cp "${archroyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/root/.face
+	cp "${archroyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/etc/skel/.face
+	cp "${archroyal_directory}"/extra/ArchRoyal-icon.png "$ARCH"/usr/share/pixmaps
 	mkdir "$ARCH"/usr/share/backgrounds/ArchRoyal
-	cp -r "${ArchRoyal_directory}"/extra/wallpapers/* "$ARCH"/usr/share/backgrounds/ArchRoyal/
+	cp -r "${archroyal_directory}"/extra/wallpapers/* "$ARCH"/usr/share/backgrounds/ArchRoyal/
 
 	if [ -n "$config_env" ]; then
-		cp -R "${ArchRoyal_directory}/extra/desktop/$config_env/*" -t "$ARCH"/root
-		cp -R "${ArchRoyal_directory}/extra/desktop/$config_env/.config" -t "$ARCH"/etc/skel
+		cp -R "${archroyal_directory}/extra/desktop/$config_env/*" -t "$ARCH"/root
+		cp -R "${archroyal_directory}/extra/desktop/$config_env/.config" -t "$ARCH"/etc/skel
 
 	fi
 
 	case "$config_env" in
 	"ArchRoyal-gnome" | "ArchRoyal-budgie")
-		cp -r "${ArchRoyal_directory}/extra/desktop/ArchRoyal-gnome/gnome-backgrounds.xml" "$ARCH"/usr/share/gnome-background-properties
+		cp -r "${archroyal_directory}/extra/desktop/ArchRoyal-gnome/gnome-backgrounds.xml" "$ARCH"/usr/share/gnome-background-properties
 		;;
 	"ArchRoyal-openbox")
 		if [ "$virt" == "vbox" ]; then
