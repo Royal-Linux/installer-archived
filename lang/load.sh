@@ -205,609 +205,471 @@ main_msg() {
 }
 
 load_msg() {
+    TEXTDOMAINDIR=./locale/load/load/locale
+    TEXTDOMAIN=load
 
-    wait_load="\n Please wait..."
-
-    connection_load="Please wait while we test your connection..."
-
-    boot_load="Creating boot partition..."
-
-    swap_load="Creating swap space..."
-
-    frmt_load="Formatting..."
-
-    mnt_load="Mounting..."
-
-    pv_load="Creating physical volumes"
-
-    lv_load="Creating logical volumes"
-
-    encrypt_load="Encrypting drive..."
-
-    mirror_load0="Retrieving new mirror list..."
-
-    mirror_load1="Please wait while ranking mirrors..."
-
-    efi_load1="Configuring efi boot..."
-
-    grub_load1="Installing grub to drive..."
-
-    grub_load2="Configuring grub..."
-
-    syslinux_load="Installing syslinux to drive..."
-
-    uefi_config_load="Please wait while configuring kernel for uEFI..."
-
-    f2fs_config_load="Please wait while configuring kernel for F2FS..."
-
-    kernel_config_load="Please wait while configuring kernel..."
-
-    encrypt_load1="Please wait while configuring kernel for encryption..."
-
-    dhcp_load="Enabling DHCP..."
-
-    ssh_load="Enabling SSH..."
-
-    cups_load="Enabling print system..."
-
-    ftp_load="Enabling FTP..."
-
-    http_load="Enabling HTTP..."
-
-    dm_load="Enabling lightdm..."
-
-    pacman_load="Please wait while we update your pacman databases..."
+    wait_load=$(gettext -s "wait_load")
+    connection_load=$(gettext -s "connection_load")
+    boot_load=$(gettext -s "boot_load")
+    swap_load=$(gettext -s "swap_load")
+    frmt_load=$(gettext -s "frmt_load")
+    mnt_load=$(gettext -s "mnt_load")
+    pv_load=$(gettext -s "pv_load")
+    lv_load=$(gettext -s "lv_load")
+    encrypt_load=$(gettext -s "encrypt_load")
+    mirror_load0=$(gettext -s "mirror_load0")
+    mirror_load1=$(gettext -s "mirror_load1")
+    efi_load1=$(gettext -s "efi_load1")
+    grub_load1=$(gettext -s "grub_load1")
+    grub_load2=$(gettext -s "grub_load2")
+    syslinux_load=$(gettext -s "syslinux_load")
+    uefi_config_load=$(gettext -s "uefi_config_load")
+    f2fs_config_load=$(gettext -s "f2fs_config_load")
+    kernel_config_load=$(gettext -s "kernel_config_load")
+    encrypt_load1=$(gettext -s "encrypt_load1")
+    dhcp_load=$(gettext -s "dhcp_load")
+    ssh_load=$(gettext -s "ssh_load")
+    cups_load=$(gettext -s "cups_load")
+    ftp_load=$(gettext -s "ftp_load")
+    http_load=$(gettext -s "http_load")
+    dm_load=$(gettext -s "dm_load")
+    pacman_load=$(gettext -s "pacman_load")
 
 }
 
 part_msg() {
+    TEXTDOMAINDIR=./locale/part/part/locale
+    TEXTDOMAIN=part
 
-    method0="Auto Partition Drive"
-
-    method1="Auto partition encrypted LVM"
-
-    method2="Manual Partition Drive"
-
+    method0=$(gettext -s "method0")
+    method1=$(gettext -s "method1")
+    method2=$(gettext -s "method2")
 }
 
 fs_msg() {
+    TEXTDOMAINDIR=./locale/fs/fs/locale
+    TEXTDOMAIN=fs
 
-    fs0="4th extended file system"
-
-    fs1="3rd extended file system"
-
-    fs2="2nd extended file system"
-
-    fs3="B-Tree File System"
-
-    fs4="Journaled File System"
-
-    fs5="Reiser File System"
-
-    fs6="F2FS File System"
-
-    fs7="VFAT/FAT32 File System"
-
-    fs8="XFS"
-
+    fs0=$(gettext -s "fs0")
+    fs1=$(gettext -s "fs1")
+    fs2=$(gettext -s "fs2")
+    fs3=$(gettext -s "fs3")
+    fs4=$(gettext -s "fs4")
+    fs5=$(gettext -s "fs5")
+    fs6=$(gettext -s "fs6")
+    fs7=$(gettext -s "fs7")
+    fs8=$(gettext -s "fs8")
 }
 
 graphics_msg() {
+    TEXTDOMAINDIR=./locale/graphics/graphics/locale
+    TEXTDOMAIN=graphics
 
-    gr1="Vesa ${os} $drivers"
-    gr2="NVIDIA $drivers"
-    gr4="AMD/ATI ${os} $drivers"
-    gr5="Intel ${os} $drivers"
-    gr6="NVIDIA $drivers"
-    gr7="NVIDIA 340xx $drivers"
-    gr8="NVIDIA ${os} $drivers"
-    gr9="NVIDIA 390xx $drivers"
-    gr10="AMDGPU Video ${drivers}"
+    gr1=$(gettext -s "gr1")
+    gr2=$(gettext -s "gr2")
+    gr4=$(gettext -s "gr4")
+    gr5=$(gettext -s "gr5")
+    gr6=$(gettext -s "gr6")
+    gr7=$(gettext -s "gr7")
+    gr8=$(gettext -s "gr8")
+    gr9=$(gettext -s "gr9")
+    gr10=$(gettext -s "gr10")
 
 }
 
 menu_msg() {
+    TEXTDOMAINDIR=./locale/menu/menu/locale
+    TEXTDOMAIN=menu
 
-    menu="Menu Items: \n\n $a Start a 'Command Line Session' to run custom commands\n $a Return to installer with 'arch-royal'"
-
-    menu0="Re-Set Locale"
-
-    menu1="Re-Set Timezone"
-
-    menu2="Re-Set Keymap"
-
-    menu3="Partition Drive"
-
-    menu4="Update Mirror list"
-
-    menu5="Install Base System"
-
-    menu11="Reboot System"
-
-    menu12="Exit Installer"
-
-    menu13="Command Line Session"
-
-    menu_err_msg3="Drive already mounted, ready to install system. \n\n $a Are you sure you want to return to partition menu?"
-
-    menu_exit_msg="System not installed yet... \n\n $a Are you sure you want to exit?"
-
-    steam_add_msg="Installing Steam requires multilib to be enabled. \n\n $a Enable multilib repos now?"
-
-    audio="Audio"
-
-    audio_msg="Audio Software =>"
-
-    database="Database"
-
-    database_msg="Database Software =>"
-
-    graphic="Graphics"
-
-    graphic_msg="Graphics Software =>"
-
-    internet="Internet"
-
-    internet_msg="Internet Software =>"
-
-    multimedia="Multimedia"
-
-    multimedia_msg="Multimedia Software =>"
-
-    office="Office"
-
-    office_msg="Office Software =>"
-
-    programming="Programming"
-
-    program_msg="Programming Software =>"
-
-    terminal="Terminal"
-
-    terminal_msg="Terminal Emulators =>"
-
-    text_editor="Text Editors"
-
-    text_editor_msg="Text Editing Software =>"
-
-    util="Utilities"
-
-    util_msg="Utilities Software =>"
-
-    servers="Server"
-
-    servers_msg="Server software =>"
-
-    fonts="Fonts"
-
-    fonts_msg="Linux Fonts =>"
-
-    games="Games"
-
-    games_msg="Linux Games =>"
-
-    extra_de="Extra Desktop"
-
-    extra_de_msg="Extra Desktop Environment =>"
-
-    extra_wm="Extra WM"
-
-    extra_wm_msg="Extra Windows Managers =>"
-
-    reboot0="Reboot System"
-
-    reboot1="Return To Command Prompt"
-
-    reboot2="Arch-royal-Chroot Into Installed System"
-
-    reboot3="Add New User Account"
-
-    reboot4="View Install Log"
-
-    reboot5="Install Additional Software"
-
-    reboot6="Power Off System"
-
-    customized_de="Customized Desktop"
-
-    customized_de_msg="Customized Desktop Environments =>"
-
-    more_de="Clean Desktop Environments"
-
-    more_de_msg="Default Desktop Environments =>"
-
-    more_wm="More Window Managers"
-
-    more_wm_msg="Default Window Managers =>"
-
+    menu=$(gettext -s "menu")
+    menu0=$(gettext -s "menu0")
+    menu1=$(gettext -s "menu1")
+    menu2=$(gettext -s "menu2")
+    menu3=$(gettext -s "menu3")
+    menu4=$(gettext -s "menu4")
+    menu5=$(gettext -s "menu5")
+    menu11=$(gettext -s "menu11")
+    menu12=$(gettext -s "menu12")
+    menu13=$(gettext -s "menu13")
+    menu_err_msg3=$(gettext -s "menu_err_msg3")
+    menu_exit_msg=$(gettext -s "menu_exit_msg")
+    steam_add_msg=$(gettext -s "steam_add_msg")
+    audio=$(gettext -s "audio")
+    audio_msg=$(gettext -s "audio_msg")
+    database=$(gettext -s "database")
+    database_msg=$(gettext -s "database_msg")
+    graphic=$(gettext -s "graphic")
+    graphic_msg=$(gettext -s "graphic_msg")
+    internet=$(gettext -s "internet")
+    internet_msg=$(gettext -s "internet_msg")
+    multimedia=$(gettext -s "multimedia")
+    multimedia_msg=$(gettext -s "multimedia_msg")
+    office=$(gettext -s "office")
+    office_msg=$(gettext -s "office_msg")
+    programming=$(gettext -s "programming")
+    program_msg=$(gettext -s "program_msg")
+    terminal=$(gettext -s "terminal")
+    terminal_msg=$(gettext -s "terminal_msg")
+    text_editor=$(gettext -s "text_editor")
+    text_editor_msg=$(gettext -s "text_editor_msg")
+    util=$(gettext -s "util")
+    util_msg=$(gettext -s "util_msg")
+    servers=$(gettext -s "servers")
+    servers_msg=$(gettext -s "servers_msg")
+    fonts=$(gettext -s "fonts")
+    fonts_msg=$(gettext -s "fonts_msg")
+    games=$(gettext -s "games")
+    games_msg=$(gettext -s "games_msg")
+    extra_de=$(gettext -s "extra_de")
+    extra_de_msg=$(gettext -s "extra_de_msg")
+    extra_wm=$(gettext -s "extra_wm")
+    extra_wm_msg=$(gettext -s "extra_wm_msg")
+    reboot0=$(gettext -s "reboot0")
+    reboot1=$(gettext -s "reboot1")
+    reboot2=$(gettext -s "reboot2")
+    reboot3=$(gettext -s "reboot3")
+    reboot4=$(gettext -s "reboot4")
+    reboot5=$(gettext -s "reboot5")
+    reboot6=$(gettext -s "reboot6")
+    customized_de=$(gettext -s "customized_de")
+    customized_de_msg=$(gettext -s "customized_de_msg")
+    more_de=$(gettext -s "more_de")
+    more_de_msg=$(gettext -s "more_de_msg")
+    more_wm=$(gettext -s "more_wm")
+    more_wm_msg=$(gettext -s "more_wm_msg")
 }
 
 op_msg() {
+    TEXTDOMAINDIR=./locale/op/op/locale
+    TEXTDOMAIN=op
 
-    welcome_op_msg=" -| Arch-royal Linux |- "
-
-    connection_op_msg=" -| Check Connection |- "
-
-    locale_op_msg=" -| Set Locale |- "
-
-    zone_op_msg=" -| Set Timezone |- "
-
-    key_op_msg=" -| Set Keymap |- "
-
-    part_op_msg=" -| Partition Drive |- "
-
-    partload_op_msg=" -| Partitioning Drive |- "
-
-    manual_op_msg=" -| Partition Menu |- "
-
-    edit_op_msg=" -| Edit Partition |- "
-
-    mirror_op_msg=" -| Update Mirrorlist |- "
-
-    install_op_msg=" -| Install System |- "
-
-    config_op_msg=" -| Configure System |- "
-
-    host_op_msg=" -| Set Hostname |- "
-
-    passwd_op_msg=" -| Set Password |- "
-
-    user_op_msg=" -| Add User |- "
-
-    user_op_msg1=" -| Edit User |- "
-
-    de_op_msg=" -| Install Desktop |- "
-
-    software_op_msg=" -| Install Software |- "
-
-    complete_op_msg=" -| Install Complete |- "
-
-    menu_op_msg=" -| Main Menu |- "
-
-    install_opt_msg="Select your desired install option: \n\n $a Quick install select 'Arch-royal-Desktop' or 'Arch-royal-Server' \n $a Advanced install options select 'Arch-royal-Advanced'"
-
-    install_opt0="Manually selection install options"
-
-    install_opt1="Quick desktop install"
-
-    install_opt2="Quick LTS desktop install"
-
-    install_opt3="Quick server install"
-
-    install_opt4="Quick LTS server install"
-
+    welcome_op_msg=$(gettext -s "welcome_op_msg")
+    connection_op_msg=$(gettext -s "connection_op_msg")
+    locale_op_msg=$(gettext -s "locale_op_msg")
+    zone_op_msg=$(gettext -s "zone_op_msg")
+    key_op_msg=$(gettext -s "key_op_msg")
+    part_op_msg=$(gettext -s "part_op_msg")
+    partload_op_msg=$(gettext -s "partload_op_msg")
+    manual_op_msg=$(gettext -s "manual_op_msg")
+    edit_op_msg=$(gettext -s "edit_op_msg")
+    mirror_op_msg=$(gettext -s "mirror_op_msg")
+    install_op_msg=$(gettext -s "install_op_msg")
+    config_op_msg=$(gettext -s "config_op_msg")
+    host_op_msg=$(gettext -s "host_op_msg")
+    passwd_op_msg=$(gettext -s "passwd_op_msg")
+    user_op_msg=$(gettext -s "user_op_msg")
+    user_op_msg1=$(gettext -s "user_op_msg1")
+    de_op_msg=$(gettext -s "de_op_msg")
+    software_op_msg=$(gettext -s "software_op_msg")
+    complete_op_msg=$(gettext -s "complete_op_msg")
+    menu_op_msg=$(gettext -s "menu_op_msg")
+    install_opt_msg=$(gettext -s "install_opt_msg")
+    install_opt0=$(gettext -s "install_opt0")
+    install_opt1=$(gettext -s "install_opt1")
+    install_opt2=$(gettext -s "install_opt2")
+    install_opt3=$(gettext -s "install_opt3")
+    install_opt4=$(gettext -s "install_opt4")
 }
 
 var_msg() {
+    TEXTDOMAINDIR=./locale/var/var/locale
+    TEXTDOMAIN=var
 
-    gtk3_var="Install $DE gtk3? \n\n $a (experimental version)"
-
-    drive_var="WARNING! Will erase all data on drive! \n\n $a Location: /dev/$DRIVE \n $a Size: $drive_gigs GiB \n $a Filesystem: $FS \n $a Would you like to continue?"
-
-    drive_var1="WARNING! Will erase all data on drive! \n\n $a Location: /dev/$DRIVE \n $a Size: $drive_gigs GiB \n $a Filesystem: $FS \n $a Swap space: $SWAPSPACE MiB \n $a Would you like to continue?"
-
-    drive_var2="WARNING! Will erase all data on drive! \n\n $a Location: /dev/$DRIVE \n $a Size: $drive_gigs GiB \n $a Filesystem: $FS \n $a Swap space $SWAPSPACE MiB \n $a Boot: UEFI \n $a Would you like to continue?"
-
-    drive_var3="WARNING! Will erase all data on drive! \n\n $a Location: /dev/$DRIVE \n $a Size: $drive_gigs GiB \n $a Filesystem: $FS \n $a Boot: UEFI \n $a Would you like to continue?"
-
-    encrypt_var0="Warning this will encrypt /dev/$DRIVE! \n\n $a Continue?"
-
-    encrypt_var1="\nPlease enter a new password for /dev/$DRIVE \n\n $a Note this password is used to unencrypt your drive at boot"
-
-    encrypt_var2="\nNew /dev/$DRIVE password again. \n\n $a Encryption password again:"
-
-    root_var="Create a new root mount point: \n $a Note: Root mount point must be created first. \n\n $a Partition: /dev/$part \n $a Size: $part_size \n\n Create new root mount point?"
-
-    manual_part_var0="Partition already mounted. \n\n $a Mount point: $part_mount \n $a Partition: /dev/$part \n $a Size: $part_size\n\n Edit to create new mount point"
-
-    manual_part_var1="Would you like to unmount partition: /dev/$part and remove $part_mount mount point? \n\n $a Note will unmount all partitions mounted under"
-
-    manual_part_var2="Warning: partition: /dev/$part is set as your root filesystem, this will erase all mount point under it. \n\n $a Are you sure you want to continue?"
-
-    manual_part_var3="Would you like to edit the partition scheme now? \n\n $a Drive: /dev/$part \n $a Size: $part_size \n\n Edit partition scheme? -Don't forget to 'write' changes"
-
-    manual_new_part_var="Would you like to create a new mount point? \n\n $a Partition: /dev/$part \n $a Size: $part_size \n\n Edit to create new mount point"
-
-    manual_swap_var="Would you like to remove SWAP filesystem from /dev/$part? \n\n $a Select 'yes' to remove SWAP filesystem."
-
-    mount_warn_var="Warning: disk /dev/$part contains mounted partitions. \n\n $a Would you like to unmount and edit partition scheme?"
-
-    mnt_var0="Select a new mount point for /dev/$part: \n\n $a Select 'custom' to create new mount point"
-
-    fs_err_var="$error A separate '/boot' partition must be setup when using an $FS filesystem. \n\n $a Returning to partition menu..."
-
-    install_var="Begin installing Arch-royal Linux base system onto /dev/$DRIVE?\n\n $a Download size: $software_size \n $a Estimated install time: $down_min minutes.\n $a Estimated speed: $connection_speed $connection_rate \n $a Packages to add: \n\nbase${base_install}"
-
-    user_edit_var="Edit user:\n $a Username: $user\n $a Login Shell: $user_sh\n $a Full Username : $full_user\n $a Sudo User: $sudo"
-
-    user_shell_var="Select a new shell for $user:\n $a Set user login shell"
-
-    user_var0="\nPlease enter a new login password for: $user \n\n $a Set $user password"
-
-    user_var1="\nRe-enter login password for: $user \n\n $a $user password again"
-
-    sudo_var="Enable sudo privilege for $user? \n\n $a Enables administrative privilege for $user."
-
-    sudo_var1="Disable sudo privilege for $user? \n\n $a Disables administrative privilege for $user."
-
-    deluser_var="Delete user: $user? \n\n $a Removes user account from system"
-
-    root_confirm_var="Confirm creating mount point? \n\n $a Mount point: '/' Root File System \n $a Partition: /dev/$part \n $a Size: $part_size \n $a Filesystem: $FS \n\n Write changes to disk?"
-
-    part_confirm_var="Confirm creating mount point? \n\n $a Mount point: $mnt \n $a Partition: /dev/$part \n $a Size: $part_size \n $a Filesystem: $FS \n\n Write changes to disk?"
-
-    software_confirm_var0="Add the following packages to install list? \n\n $a Number of packages: $software_int \n $a Download size: $software_size \n $a Packages to add: \n\n$software_list"
-
-    software_confirm_var1="Proceed with installing software? \n\n $a Number of packages: $software_int \n $a Total download size: $software_size \n $a Estimated install time: $down_min minutes \n $a Estimated speed: $connection_speed $connection_rate \n $a Packages to install: \n\n$download_list"
-
-    efi_var="A mounted EFI system has been detected at $esp_part \n\n $a Would you like to enable EFI boot?"
-
-    vfat_var="The EFI system mounted at $esp_part does not contain a valid vfat filesystem. \n\n $a Would you like to format and create new vfat system?"
-
-    efi_mnt_var="The EFI partition detected at $esp_part has not been mounted. \n\n Mount EFI boot partition now?"
-
-    f2_err_var="$error You must create a separate boot partition in order to use an $FS filesystem. \n\n $a Returning to partition menu..."
-
+    gtk3_var=$(gettext -s "gtk3_var")
+    drive_var=$(gettext -s "drive_var")
+    drive_var1=$(gettext -s "drive_var1")
+    drive_var2=$(gettext -s "drive_var2")
+    drive_var3=$(gettext -s "drive_var3")
+    encrypt_var0=$(gettext -s "encrypt_var0")
+    encrypt_var1=$(gettext -s "encrypt_var1")
+    encrypt_var2=$(gettext -s "encrypt_var2")
+    root_var=$(gettext -s "root_var")
+    manual_part_var0=$(gettext -s "manual_part_var0")
+    manual_part_var1=$(gettext -s "manual_part_var1")
+    manual_part_var2=$(gettext -s "manual_part_var2")
+    manual_part_var3=$(gettext -s "manual_part_var3")
+    manual_new_part_var=$(gettext -s "manual_new_part_var")
+    manual_swap_var=$(gettext -s "manual_swap_var")
+    mount_warn_var=$(gettext -s "mount_warn_var")
+    mnt_var0=$(gettext -s "mnt_var0")
+    fs_err_var=$(gettext -s "fs_err_var")
+    install_var=$(gettext -s "install_var")
+    user_edit_var=$(gettext -s "user_edit_var")
+    user_shell_var=$(gettext -s "user_shell_var")
+    user_var0=$(gettext -s "user_var0")
+    user_var1=$(gettext -s "user_var1")
+    sudo_var=$(gettext -s "sudo_var")
+    sudo_var1=$(gettext -s "sudo_var1")
+    deluser_var=$(gettext -s "deluser_var")
+    root_confirm_var=$(gettext -s "root_confirm_var")
+    part_confirm_var=$(gettext -s "part_confirm_var")
+    software_confirm_var0=$(gettext -s "software_confirm_var0")
+    software_confirm_var1=$(gettext -s "software_confirm_var1")
+    efi_var=$(gettext -s "efi_var")
+    vfat_var=$(gettext -s "vfat_var")
+    efi_mnt_var=$(gettext -s "efi_mnt_var")
+    f2_err_var=$(gettext -s "f2_err_var")
 }
 
 load_var_msg() {
+    TEXTDOMAINDIR=./locale/load.var/load/var/locale
+    TEXTDOMAIN=load.var
 
-    load_var0="Partitioning /dev/$DRIVE..."
-
-    load_var1="Please wait while creating $FS filesystem..."
-
-    install_load_var="$h\nInstalling Arch-royal Linux to: /dev/$DRIVE \n\n $a Download size: $software_size"
-
-    software_load_var="$h\nInstalling additional software \n\n $a Download size: $software_size"
-
-    locale_load_var="Generating $LOCALE locale..."
-
-    zone_load_var="Setting timezone $ZONE..."
-
+    load_var0=$(gettext -s "load_var0")
+    load_var1=$(gettext -s "load_var1")
+    install_load_var=$(gettext -s "install_load_var")
+    software_load_var=$(gettext -s "software_load_var")
+    locale_load_var=$(gettext -s "locale_load_var")
+    zone_load_var=$(gettext -s "zone_load_var")
 }
 
 de_msg() {
+    TEXTDOMAINDIR=./locale/de/de/locale
+    TEXTDOMAIN=de
 
-    de0="Xfce4 Light Desktop"
-    de1="Mate Light Desktop"
-    de2="LXDE Light Desktop"
-    de3="LXQT Light Desktop"
-    de4="Gnome Modern Desktop"
-    de5="Cinnamon Desktop"
-    de6="Kde Plasma Desktop"
-    de7="Enlightenment Desktop"
-    de8="Openbox Window Manager"
-    de9="Awesome Window Manager"
-    de10="i3 Tiling Window Manager"
-    de11="Fluxbox Window Manager"
-    #de12="Dynamic Window Manager"
-    de13="bspwm Window Manager"
-    de14="Deepin Desktop"
-    de15="Arch-royal XFCE4 Edition"
-    de16="xmonad Window Manager"
-    de17="Budgie Light Desktop"
-    de18="Arch-royal OpenBox Edition"
-    de19="Gnome Classic Desktop"
-    #de20="WindowMaker Window Manager"
-    de21="Sway Window Manager"
-    de22="Arch-royal Gnome Edition"
-    de23="Arch-royal Cinnamon Edition"
-    de24="Arch-royal Budgie Edition"
-    de25="Qtile Window Manager"
+    de0=$(gettext -s "de0")
+    de1=$(gettext -s "de1")
+    de2=$(gettext -s "de2")
+    de3=$(gettext -s "de3")
+    de4=$(gettext -s "de4")
+    de5=$(gettext -s "de5")
+    de6=$(gettext -s "de6")
+    de7=$(gettext -s "de7")
+    de8=$(gettext -s "de8")
+    de9=$(gettext -s "de9")
+    de10=$(gettext -s "de10")
+    de11=$(gettext -s "de11")
+    de12=$(gettext -s "#de1")
+    de13=$(gettext -s "de13")
+    de14=$(gettext -s "de14")
+    de15=$(gettext -s "de15")
+    de16=$(gettext -s "de16")
+    de17=$(gettext -s "de17")
+    de18=$(gettext -s "de18")
+    de19=$(gettext -s "de19")
+    de20=$(gettext -s "#de2")
+    de21=$(gettext -s "de21")
+    de22=$(gettext -s "de22")
+    de23=$(gettext -s "de23")
+    de24=$(gettext -s "de24")
+    de25=$(gettext -s "de25")
 
 }
 
 dm_msg() {
+    TEXTDOMAINDIR=./locale/dm/dm/locale
+    TEXTDOMAIN=dm
 
-    dm0="GNOME Desktop Display Manager"
-    dm1="Multi Desktop Display Manager"
-    dm2="Lxdm Desktop Display Manager"
-    dm3="Simple Desktop Display Manager"
+    dm0=$(gettext -s "dm0")
+    dm1=$(gettext -s "dm1")
+    dm2=$(gettext -s "dm2")
+    dm3=$(gettext -s "dm3")
 
 }
 
 soft_msg() {
+    TEXTDOMAINDIR=./locale/soft/soft/locale
+    TEXTDOMAIN=soft
 
     # Audio
-    audio0="Audio editing program"
-    audio1="Advanced audio player"
-    audio2="CLI music player"
-    audio3="JACK Audio Connection Kit"
-    audio4="Music visualizer program"
-    audio5="Linux MultiMedia Studio"
-    audio6="Music Player Daemon"
-    audio7="GUI client for MPD"
-    audio8="PulseAudio Volume Control"
-    audio9="Console frontend for Pandora"
-    audio10="Music player and library organizer"
-    audio11="Equalizer for pulseaudio"
-    audio13="Qt5 based audio-player"
-    audio14="Music playback application"
+    audio0=$(gettext -s "audio0")
+    audio1=$(gettext -s "audio1")
+    audio2=$(gettext -s "audio2")
+    audio3=$(gettext -s "audio3")
+    audio4=$(gettext -s "audio4")
+    audio5=$(gettext -s "audio5")
+    audio6=$(gettext -s "audio6")
+    audio7=$(gettext -s "audio7")
+    audio8=$(gettext -s "audio8")
+    audio9=$(gettext -s "audio9")
+    audio10=$(gettext -s "audio10")
+    audio11=$(gettext -s "audio11")
+    audio13=$(gettext -s "audio13")
+    audio14=$(gettext -s "audio14")
 
     # Database
-    db0="A document-oriented database"
-    #db1="High-performance, open source database"
-    db2="SQL server implimentation"
-    db3="Sqlite module for PHP"
-    db4="Advanced key-value store"
-    db5="Powerful and scalable NoSQL database"
-    db6="SQL database engine written in C"
-    sys30="Fast SQL database server"
-    sys31="Sophisticated object-relational DBMS"
-    sys32="Web-based tool to administrate MySQL"
+    db0=$(gettext -s "db0")
+    db1=$(gettext -s "db1")
+    db2=$(gettext -s "db2")
+    db3=$(gettext -s "db3")
+    db4=$(gettext -s "db4")
+    db5=$(gettext -s "db5")
+    db6=$(gettext -s "db6")
+    sys30=$(gettext -s "sys30")
+    sys31=$(gettext -s "sys31")
+    sys32=$(gettext -s "sys32")
 
     # Internet
-    net0="Chromium Web Browser"
-    net1="FTP, FTPS and SFTP client"
-    net2="Firefox Web Browser"
-    net3="Console Web Browser"
-    net4="Watch YouTube videos"
-    net5="A fast and secure web browser"
-    net6="Email and news client"
-    net7="Console torrent client"
-    net8="Graphical torrent client"
-    net9="Highly-configurable IRC client"
-    net10="GTK-based IRC client"
-    net11="GTK-based IRC client"
-    net12="Lightweight web browser"
+    net0=$(gettext -s "net0")
+    net1=$(gettext -s "net1")
+    net2=$(gettext -s "net2")
+    net3=$(gettext -s "net3")
+    net4=$(gettext -s "net4")
+    net5=$(gettext -s "net5")
+    net6=$(gettext -s "net6")
+    net7=$(gettext -s "net7")
+    net8=$(gettext -s "net8")
+    net9=$(gettext -s "net9")
+    net10=$(gettext -s "net10")
+    net11=$(gettext -s "net11")
+    net12=$(gettext -s "net12")
 
     # Fonts
-    # font0="Unicode fonts"
-    font1="Fonts which support CN, JP, KR"
+    font0=$(gettext -s "font0")
+    font1=$(gettext -s "font1")
 
     # Games
-    game0="Free FPS focused mainly on online multiplayer"
-    game1="Port of classic BSD command line games"
-    game2="Multiperson, first-person tank shooter"
-    game3="Open-source flight simulator"
-    game4="Classic UNIX-based chess game"
-    game5="Similar to  SuperMario games"
-    game6="Kart racing game featuring Tux"
-    game7="Modern multiplayer FPS"
-    game8="Fast paced multiplayer FPS"
-    game9="Free, open-source first person shooter"
-    game10="Valve's digital software delivery system"
-    game11="AisleRiot Solitaire collection"
+    game0=$(gettext -s "game0")
+    game1=$(gettext -s "game1")
+    game2=$(gettext -s "game2")
+    game3=$(gettext -s "game3")
+    game4=$(gettext -s "game4")
+    game5=$(gettext -s "game5")
+    game6=$(gettext -s "game6")
+    game7=$(gettext -s "game7")
+    game8=$(gettext -s "game8")
+    game9=$(gettext -s "game9")
+    game10=$(gettext -s "game10")
+    game11=$(gettext -s "game11")
 
     # Graphic
-    graphic0="3D graphics creation suite"
-    graphic1="Photography development application"
-    graphic2="GNU Image Manipulation"
-    graphic3="Set of tools for drawing graphs"
-    graphic4="Command-line image manipulation program"
-    graphic5="Drawing and editing program"
-    graphic6="Lightweight image viewer"
-    graphic7="A powerful raw image processing program"
-    graphic8="Image processing system"
-    graphic9="Professional vector graphics editor"
-    graphic10="Paint icons and pixel based artwork"
-    graphic11="Painting application for digital painters"
+    graphic0=$(gettext -s "graphic0")
+    graphic1=$(gettext -s "graphic1")
+    graphic2=$(gettext -s "graphic2")
+    graphic3=$(gettext -s "graphic3")
+    graphic4=$(gettext -s "graphic4")
+    graphic5=$(gettext -s "graphic5")
+    graphic6=$(gettext -s "graphic6")
+    graphic7=$(gettext -s "graphic7")
+    graphic8=$(gettext -s "graphic8")
+    graphic9=$(gettext -s "graphic9")
+    graphic10=$(gettext -s "graphic10")
+    graphic11=$(gettext -s "graphic11")
 
     # Multimedia
-    media0="Multithreaded video transcoder"
-    media1="Media Player"
-    media2="Video editing software"
-    media3="Screen capture software"
-    media4="A free front-end for MPlayer"
-    media5="GNOME media player"
-    media6="VLC graphical media player"
-    media7="Media player-MPlayer based"
-    media8="Multimedia codecs"
-    media9="Full featured video editor for Linux"
-    media10="Screencast GIF tool"
-    media11="Powerful and simple media player"
-    media12="Download videos and audio from YouTube"
+    media0=$(gettext -s "media0")
+    media1=$(gettext -s "media1")
+    media2=$(gettext -s "media2")
+    media3=$(gettext -s "media3")
+    media4=$(gettext -s "media4")
+    media5=$(gettext -s "media5")
+    media6=$(gettext -s "media6")
+    media7=$(gettext -s "media7")
+    media8=$(gettext -s "media8")
+    media9=$(gettext -s "media9")
+    media10=$(gettext -s "media10")
+    media11=$(gettext -s "media11")
+    media12=$(gettext -s "media12")
 
     # Office
-    office0="Free word processing"
-    office1="Graphic Art And Office Suite"
-    office2="Powerful spreadsheet application"
-    office3="Powerful spreadsheet application"
-    office4="Office word processor latest"
-    office5="Office word processor maintenance"
-    office6="Lightweight PDF and XPS viewer"
-    office7="Minimalistic document viewer"
-    office8="A collaborative office text editor"
-    office9="Office document viewer for GNOME"
-    office10="Create labels and business cards"
-    office11="Desktop publishing software"
+    office0=$(gettext -s "office0")
+    office1=$(gettext -s "office1")
+    office2=$(gettext -s "office2")
+    office3=$(gettext -s "office3")
+    office4=$(gettext -s "office4")
+    office5=$(gettext -s "office5")
+    office6=$(gettext -s "office6")
+    office7=$(gettext -s "office7")
+    office8=$(gettext -s "office8")
+    office9=$(gettext -s "office9")
+    office10=$(gettext -s "office10")
+    office11=$(gettext -s "office11")
 
     # Programming
-    prg0="Common Lisp interpreter, compiler and debugger"
-    prg1="The D programming language and compiler"
-    prg2="The dart programming language SDK"
-    prg3="The Go programming language"
-    prg4="Developer tools for Go language"
-    prg5="Java Runtime Environments"
-    prg7="OpenJDK Java 8 development kit"
-    prg8="OpenJFX 8 client application platform"
-    prg9="A feature-rich programming language"
-    prg10="A general-purpose scripting language"
-    prg11="High-level scripting language"
-    prg12="An object-oriented language"
-    prg13="Object-oriented and functional based"
-    prg14="OpenJDK Java 11 development kit"
-    prg15="OpenJDK Java 12 development kit"
+    prg0=$(gettext -s "prg0")
+    prg1=$(gettext -s "prg1")
+    prg2=$(gettext -s "prg2")
+    prg3=$(gettext -s "prg3")
+    prg4=$(gettext -s "prg4")
+    prg5=$(gettext -s "prg5")
+    prg7=$(gettext -s "prg7")
+    prg8=$(gettext -s "prg8")
+    prg9=$(gettext -s "prg9")
+    prg10=$(gettext -s "prg10")
+    prg11=$(gettext -s "prg11")
+    prg12=$(gettext -s "prg12")
+    prg13=$(gettext -s "prg13")
+    prg14=$(gettext -s "prg14")
+    prg15=$(gettext -s "prg15")
 
     # Terminal
-    term0="Framebuffer Terminal Emulator"
-    term1="GNOME Dropdown Terminal"
-    term2="Simple terminal emulator"
-    term3="Light Weight Terminal"
-    term4="urxvt Terminal Emulator"
-    term5="Terminator Terminal Emulator"
-    term6="XFCE4 Terminal Emulator"
-    term7="Drop-down terminal (Quake style)"
-    term8="A simple terminal emulator for X"
-    term9="A simple VTE-based terminal"
-    term10="EFL based terminal emulator"
-    term11="Quake and Doom inspired terminal"
-    term12="Terminal which mimics a cathode display"
-    term13="A tiling terminal emulator for Linux using GTK+ 3"
+    term0=$(gettext -s "term0")
+    term1=$(gettext -s "term1")
+    term2=$(gettext -s "term2")
+    term3=$(gettext -s "term3")
+    term4=$(gettext -s "term4")
+    term5=$(gettext -s "term5")
+    term6=$(gettext -s "term6")
+    term7=$(gettext -s "term7")
+    term8=$(gettext -s "term8")
+    term9=$(gettext -s "term9")
+    term10=$(gettext -s "term10")
+    term11=$(gettext -s "term11")
+    term12=$(gettext -s "term12")
+    term13=$(gettext -s "term13")
 
     # Text editor
-    edit0="OS in a text editor"
-    edit1="A text editor using GTK2"
-    edit2="GNOME Text editor"
-    edit3="Graphical interface for Vim"
-    edit4="XFCE4 Text editor"
-    edit5="Popular fork of VIM editor"
-    edit6="Console Text Editor fork of vi"
-    edit7="Atom feature rich text editor"
-    edit8="A WYSIWYG text editor"
+    edit0=$(gettext -s "edit0")
+    edit1=$(gettext -s "edit1")
+    edit2=$(gettext -s "edit2")
+    edit3=$(gettext -s "edit3")
+    edit4=$(gettext -s "edit4")
+    edit5=$(gettext -s "edit5")
+    edit6=$(gettext -s "edit6")
+    edit7=$(gettext -s "edit7")
+    edit8=$(gettext -s "edit8")
 
     # Shell
-    shell0="DASH command shell (Debian Almquist shell)"
-    shell1="Fish command shell (friendly interactive shell)"
-    shell2="Korn command shell (mksh enhanced ksh)"
-    shell3="tcsh/C command Shell (The C Shell)"
-    shell4="Z-Shell command shell (Powerful & Feature rich)"
-    shell5="Bourne again shell (Default Linux shell)"
+    shell0=$(gettext -s "shell0")
+    shell1=$(gettext -s "shell1")
+    shell2=$(gettext -s "shell2")
+    shell3=$(gettext -s "shell3")
+    shell4=$(gettext -s "shell4")
+    shell5=$(gettext -s "shell5")
 
     # Server
-    srv1="Linux Apache MariaDB PHP server stack"
-    srv2="Linux Nginx MariaDB PHP server stack"
-    srv3="Nginx HTTP/Proxy Server (Stable Branch)"
-    srv4="Nginx HTTP/Proxy Server (Latest Branch)"
-    srv5="Light Flexible HTTP Server"
-    srv6="Secure fast mail server"
-    srv7="Very Secure FTP daemon"
-    srv8="Full-featured Web proxy cache server"
-    srv9="SMB Fileserver and AD Domain server"
-    srv10="The ISC DNS Server"
-    srv11="The CUPS Printing System"
-    sys1="Apache High Proformance HTTP Server"
-    sys10="Secure Shell Deamon"
+    srv1=$(gettext -s "srv1")
+    srv2=$(gettext -s "srv2")
+    srv3=$(gettext -s "srv3")
+    srv4=$(gettext -s "srv4")
+    srv5=$(gettext -s "srv5")
+    srv6=$(gettext -s "srv6")
+    srv7=$(gettext -s "srv7")
+    srv8=$(gettext -s "srv8")
+    srv9=$(gettext -s "srv9")
+    srv10=$(gettext -s "srv10")
+    srv11=$(gettext -s "srv11")
+    sys1=$(gettext -s "sys1")
+    sys10=$(gettext -s "sys10")
 
     # System
-    sys2="Light system monitor for X"
-    sys3="Source control management"
-    sys4="Partition and disk managment"
-    sys5="A mouse server for the console"
-    sys6="CLI process Info"
-    sys7="Arch wiki CLI utility"
-    sys8="CD/DVD writing suite"
-    sys9="CLI network analyzer"
-    sys11="GNU Screen"
-    sys12="Display System Info"
-    sys13="Simple command-line screenshot"
-    sys14="Terminal multiplxer"
-    sys15="Twin-panel file manager"
-    sys16="Desktop virtualization"
-    sys17="Uncomplicated Firewall"
-    sys18="Wget CLI downloader"
-    sys19="Lightweight dynamic menu for X"
-    sys20="Console-based file manager"
-    sys21="Lightweight file manager for X"
-    sys22="Deletes unneeded files"
-    #sys23="Graphical file manager for X"
-    sys24="Graphical calculator application"
-    sys25="Basic cli calculator"
-    sys26="GNOME graphical package manager"
-    sys27="GNOME Software Tools"
-    sys28="NTFS drivers and utilities"
-    sys34="Screensaver for xorg"
-
+    sys2=$(gettext -s "sys2")
+    sys3=$(gettext -s "sys3")
+    sys4=$(gettext -s "sys4")
+    sys5=$(gettext -s "sys5")
+    sys6=$(gettext -s "sys6")
+    sys7=$(gettext -s "sys7")
+    sys8=$(gettext -s "sys8")
+    sys9=$(gettext -s "sys9")
+    sys11=$(gettext -s "sys11")
+    sys12=$(gettext -s "sys12")
+    sys13=$(gettext -s "sys13")
+    sys14=$(gettext -s "sys14")
+    sys15=$(gettext -s "sys15")
+    sys16=$(gettext -s "sys16")
+    sys17=$(gettext -s "sys17")
+    sys18=$(gettext -s "sys18")
+    sys19=$(gettext -s "sys19")
+    sys20=$(gettext -s "sys20")
+    sys21=$(gettext -s "sys21")
+    sys22=$(gettext -s "sys22")
+    sys23=$(gettext -s "sys23")
+    sys24=$(gettext -s "sys24")
+    sys25=$(gettext -s "sys25")
+    sys26=$(gettext -s "sys26")
+    sys27=$(gettext -s "sys27")
+    sys28=$(gettext -s "sys28")
+    sys34=$(gettext -s "sys34")
 }
 
 a="\Z2*\Zn"

@@ -49,7 +49,7 @@ prettify() {
 
 set_version() {
     # Label must be up to 11 chars long (incremental numbers)
-    arch-royal_iso_label="ARCH-ROYAL110"
-    arch-royal_iso_release="1.1.0"
-    arch-royal_iso_name="arch-royal-${arch-royal_iso_release}-x86_64.iso"
+    arch_royal_iso_label="ARCH-ROYAL110"
+    arch_royal_iso_release="1.1.0"
+    arch_royal_iso_name="arch-royal-${arch_royal_iso_release}-x86_64.iso"
 }

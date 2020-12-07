@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-07 13:39-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "load_var0"
+msgstr "Partitioning /dev/$DRIVE..."
+
+msgid "load_var1"
+msgstr "Please wait while creating $FS filesystem..."
+
+msgid "install_load_var"
+msgstr ""
+"$h\n"
+"Installing Arch-royal Linux to: /dev/$DRIVE \n"
+"\n"
+" $a Download size: $software_size"
+
+msgid "software_load_var"
+msgstr ""
+"$h\n"
+"Installing additional software \n"
+"\n"
+" $a Download size: $software_size"
+
+msgid "locale_load_var"
+msgstr "Generating $LOCALE locale..."
+
+msgid "zone_load_var"
+msgstr "Setting timezone $ZONE..."
