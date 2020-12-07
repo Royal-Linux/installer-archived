@@ -791,7 +791,8 @@ add_software() {
 					rm /tmp/size
 					software_size=$(sed <<<"$download_size" 's/\(\..\)\(.*\)/\1 MiB/')
 					software_int=$(echo "$add_software" | wc -w)
-					source "$lang_file"
+					# load lang file
+    				source "${archroyal_directory}"/lang/load.sh
 
 					if [ "$software_int" -lt "15" ]; then
 						height=14

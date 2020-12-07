@@ -18,7 +18,8 @@ set_keys() {
 			"sv" "Swedish" \
 			"uk" "United Kingdom" \
 			"$other" "$other-keymaps" 3>&1 1>&2 2>&3)
-		source "$lang_file"
+		# load lang file
+    	source "${archroyal_directory}"/lang/load.sh
 
 		if [ "$keyboard" = "$other" ]; then
 			keyboard=$(dialog --ok-button "$ok" --cancel-button "$cancel" --menu "$keys_msg" 19 60 10 $key_maps 3>&1 1>&2 2>&3)

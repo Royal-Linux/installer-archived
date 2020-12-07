@@ -72,14 +72,16 @@ set_user() {
 				else
 					sudo="$no"
 				fi
-				source "$lang_file"
+				# load lang file
+    			source "${archroyal_directory}"/lang/load.sh
 				paswd=$(grep <"$tmp_passwd" -v "$user")
 
 				if [ "$user" == "root" ]; then
 					user_sh="$root_sh"
 					sudo="$yes"
 					full_user="superuser"
-					source "$lang_file"
+					# load lang file
+    				source "${archroyal_directory}"/lang/load.sh
 					user_edit=$(dialog --ok-button "$select" --cancel-button "$back" --menu "$user_edit_var" 15 55 2 \
 						"$change_pass" "->" \
 						"$change_sh" "->" 3>&1 1>&2 2>&3)
@@ -237,7 +239,8 @@ set_hostname() {
 
 set_password() {
 
-	source "$lang_file"
+	# load lang file
+	source "${archroyal_directory}"/lang/load.sh
 	op_title="$passwd_op_msg"
 	while [ "$input" != "$input_chk" ]; do
 		input=$(dialog --nocancel --clear --insecure --passwordbox "$user_var0" 11 55 --stdout)

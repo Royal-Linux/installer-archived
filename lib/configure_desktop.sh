@@ -70,7 +70,8 @@ graphics() {
 		sed -i -e '$a\\n[ArchRoyal-local]\nServer = file:///usr/share/ArchRoyal/pkg\nSigLevel = Never' /etc/pacman.conf
 	fi
 
-	source "$lang_file"
+	# load lang file
+    source "${archroyal_directory}"/lang/load.sh
 
 	while read env; do
 		case "$env" in

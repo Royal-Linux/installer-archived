@@ -26,7 +26,8 @@ cal_rate() {
 	fi
 
 	export down down_min
-	source "${lang_file}"
+	# load lang file
+    source "${archroyal_directory}"/lang/load.sh
 
 }
 

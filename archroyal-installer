@@ -29,7 +29,7 @@ init() {
     source "${archroyal_config}"
     language
     # load lang file
-    source "${archroyal_directory}/lang/load.sh"
+    source "${archroyal_directory}"/lang/load.sh
     export reload=true
 }
 
