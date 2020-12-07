@@ -16,7 +16,7 @@ translate_this_var() {
 ### -------------------------------------------------------------------------------------------------
 
 dialog_msg() {
-    TEXTDOMAINDIR=./locale/dialog/dialog/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/dialog/dialog/locale
     TEXTDOMAIN=dialog
 
     title=$(gettext -s "title")
@@ -24,7 +24,7 @@ dialog_msg() {
 }
 
 main_msg() {
-    TEXTDOMAINDIR=./locale/main/main/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/main/main/locale
     TEXTDOMAIN=main
 
     error=$(gettext -s "error")
@@ -205,7 +205,7 @@ main_msg() {
 }
 
 load_msg() {
-    TEXTDOMAINDIR=./locale/load/load/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/load/load/locale
     TEXTDOMAIN=load
 
     wait_load=$(gettext -s "wait_load")
@@ -238,7 +238,7 @@ load_msg() {
 }
 
 part_msg() {
-    TEXTDOMAINDIR=./locale/part/part/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/part/part/locale
     TEXTDOMAIN=part
 
     method0=$(gettext -s "method0")
@@ -247,7 +247,7 @@ part_msg() {
 }
 
 fs_msg() {
-    TEXTDOMAINDIR=./locale/fs/fs/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/fs/fs/locale
     TEXTDOMAIN=fs
 
     fs0=$(gettext -s "fs0")
@@ -262,7 +262,7 @@ fs_msg() {
 }
 
 graphics_msg() {
-    TEXTDOMAINDIR=./locale/graphics/graphics/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/graphics/graphics/locale
     TEXTDOMAIN=graphics
 
     gr1=$(gettext -s "gr1")
@@ -278,7 +278,7 @@ graphics_msg() {
 }
 
 menu_msg() {
-    TEXTDOMAINDIR=./locale/menu/menu/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/menu/menu/locale
     TEXTDOMAIN=menu
 
     menu=$(gettext -s "menu")
@@ -340,7 +340,7 @@ menu_msg() {
 }
 
 op_msg() {
-    TEXTDOMAINDIR=./locale/op/op/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/op/op/locale
     TEXTDOMAIN=op
 
     welcome_op_msg=$(gettext -s "welcome_op_msg")
@@ -372,7 +372,7 @@ op_msg() {
 }
 
 var_msg() {
-    TEXTDOMAINDIR=./locale/var/var/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/var/var/locale
     TEXTDOMAIN=var
 
     gtk3_var=$(gettext -s "gtk3_var")
@@ -412,7 +412,7 @@ var_msg() {
 }
 
 load_var_msg() {
-    TEXTDOMAINDIR=./locale/load.var/load/var/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/load.var/load/var/locale
     TEXTDOMAIN=load.var
 
     load_var0=$(gettext -s "load_var0")
@@ -424,7 +424,7 @@ load_var_msg() {
 }
 
 de_msg() {
-    TEXTDOMAINDIR=./locale/de/de/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/de/de/locale
     TEXTDOMAIN=de
 
     de0=$(gettext -s "de0")
@@ -457,7 +457,7 @@ de_msg() {
 }
 
 dm_msg() {
-    TEXTDOMAINDIR=./locale/dm/dm/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/dm/dm/locale
     TEXTDOMAIN=dm
 
     dm0=$(gettext -s "dm0")
@@ -468,7 +468,7 @@ dm_msg() {
 }
 
 soft_msg() {
-    TEXTDOMAINDIR=./locale/soft/soft/locale
+    TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/soft/soft/locale
     TEXTDOMAIN=soft
 
     # Audio
