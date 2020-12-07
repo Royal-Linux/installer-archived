@@ -28,6 +28,8 @@ init() {
     # shellcheck source=/etc/archroyal.sh
     source "${archroyal_config}"
     language
+    # load lang file
+    source "${archroyal_directory}/lang/load.sh"
     export reload=true
 }
 
@@ -47,8 +49,6 @@ main() {
     add_user
     reboot_system
 }
-
-
 
 dialog() {
     # If terminal height is more than 25 lines add a backtitle

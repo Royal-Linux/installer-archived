@@ -43,13 +43,13 @@ prettify() {
     colors
 
     clear
-    echo -e "${color_white}-- Anarchy Linux --${color_blank}"
+    echo -e "${color_white}-- Arch-royal Linux --${color_blank}"
     echo -e ""
 }
 
 set_version() {
     # Label must be up to 11 chars long (incremental numbers)
-    anarchy_iso_label="ANARCHY110"
-    anarchy_iso_release="1.1.0"
-    anarchy_iso_name="anarchy-${anarchy_iso_release}-x86_64.iso"
+    arch-royal_iso_label="ARCH-ROYAL110"
+    arch-royal_iso_release="1.1.0"
+    arch-royal_iso_name="arch-royal-${arch-royal_iso_release}-x86_64.iso"
 }

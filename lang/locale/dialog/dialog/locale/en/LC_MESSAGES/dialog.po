@@ -1,0 +1,5 @@
+msgid "title"
+msgstr " -| Arch-royal |- "
+
+msgid "backtitle"
+msgstr " -| Arch-royal Linux Installer |- "
