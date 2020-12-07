@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "title"
-msgstr " -| Arch-Royal |- "
+msgstr " -| ArchRoyal |- "
 
 msgid "backtitle"
-msgstr " -| Arch-Royal Linux Installer |- "
+msgstr " -| ArchRoyal Linux Installer |- "

@@ -161,7 +161,7 @@ msgid "reboot1"
 msgstr "Return To Command Prompt"
 
 msgid "reboot2"
-msgstr "Arch-Royal-Chroot Into Installed System"
+msgstr "ArchRoyal-Chroot Into Installed System"
 
 msgid "reboot3"
 msgstr "Add New User Account"

@@ -26,7 +26,7 @@ msgstr "Please wait while creating $FS filesystem..."
 msgid "install_load_var"
 msgstr ""
 "$h\n"
-"Installing Arch-Royal Linux to: /dev/$DRIVE \n"
+"Installing ArchRoyal Linux to: /dev/$DRIVE \n"
 "\n"
 " $a Download size: $software_size"
 
