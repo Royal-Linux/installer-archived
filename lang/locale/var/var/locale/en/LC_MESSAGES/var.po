@@ -141,7 +141,7 @@ msgstr ""
 
 msgid "install_var"
 msgstr ""
-"Begin installing Arch-royal Linux base system onto /dev/$DRIVE?\n"
+"Begin installing Arch-Royal Linux base system onto /dev/$DRIVE?\n"
 "\n"
 " $a Download size: $software_size \n"
 " $a Estimated install time: $down_min minutes.\n"

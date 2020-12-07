@@ -58,7 +58,7 @@ msgid "de14"
 msgstr "Deepin Desktop"
 
 msgid "de15"
-msgstr "Arch-royal XFCE4 Edition"
+msgstr "Arch-Royal XFCE4 Edition"
 
 msgid "de16"
 msgstr "xmonad Window Manager"
@@ -67,7 +67,7 @@ msgid "de17"
 msgstr "Budgie Light Desktop"
 
 msgid "de18"
-msgstr "Arch-royal OpenBox Edition"
+msgstr "Arch-Royal OpenBox Edition"
 
 msgid "de19"
 msgstr "Gnome Classic Desktop"
@@ -79,13 +79,13 @@ msgid "de21"
 msgstr "Sway Window Manager"
 
 msgid "de22"
-msgstr "Arch-royal Gnome Edition"
+msgstr "Arch-Royal Gnome Edition"
 
 msgid "de23"
-msgstr "Arch-royal Cinnamon Edition"
+msgstr "Arch-Royal Cinnamon Edition"
 
 msgid "de24"
-msgstr "Arch-royal Budgie Edition"
+msgstr "Arch-Royal Budgie Edition"
 
 msgid "de25"
 msgstr "Qtile Window Manager"

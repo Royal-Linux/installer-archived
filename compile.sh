@@ -43,7 +43,7 @@ prettify() {
     colors
 
     clear
-    echo -e "${color_white}-- Arch-royal Linux --${color_blank}"
+    echo -e "${color_white}-- Arch-Royal Linux --${color_blank}"
     echo -e ""
 }
 
