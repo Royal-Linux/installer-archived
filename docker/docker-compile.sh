@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ######## DON'T RENAME THIS FILE ########
-# Don't run this script directly. Run 'compile.sh' from
+# Don't run this script directly. Run 'compile' from
 # project root. It will set requiredenvironment variables.
 
 # This script would be executed from inside docker container and
@@ -21,9 +21,7 @@ out_dir="${project_dir}"/out # Directory for generated ISO
 # archroyal_iso_release="0.0.1"  # from ENV
 archroyal_iso_name="archroyal-${archroyal_iso_release}-x86_64.iso"
 
-# TODO: Update local aur dependencies
-local_aur_packages=(
-)
+local_aur_packages=()
 
 init() {
     # Check for existing Arch iso
@@ -78,7 +76,7 @@ copy_config_files() {
     # Copy over main ArchRoyal config and installer script, make them executable
     echo "Adding archroyal config and installer scripts to iso ..."
     cp "${project_dir}"/etc/archroyal.conf "${project_dir}"/etc/pacman.conf "${squashfs}"/etc/
-    cp "${project_dir}"/archroyal-installer.sh "${squashfs}"/usr/bin/archroyal
+    cp "${project_dir}"/archroyal-installer "${squashfs}"/usr/bin/archroyal
     cp "${project_dir}"/extra/sysinfo "${project_dir}"/extra/iptest "${squashfs}"/usr/bin/
     chmod +x "${squashfs}"/usr/bin/archroyal "${squashfs}"/usr/bin/sysinfo "${squashfs}"/usr/bin/iptest
 
@@ -96,13 +94,10 @@ copy_config_files() {
     echo -e "Adding dot files and desktop configurations to iso ..."
     rm "${squashfs}"/root/install.txt
     cp "${project_dir}"/extra/shellrc/.zshrc "${squashfs}"/root/
-    cp "${project_dir}"/extra/.help "${project_dir}"/extra/.dialogrc "${squashfs}"/root/
+    cp "${project_dir}"/extra/.helprc "${project_dir}"/extra/.dialogrc "${squashfs}"/root/
     cp "${project_dir}"/extra/shellrc/.zshrc "${squashfs}"/etc/zsh/zshrc
-    cp -r "${project_dir}"/extra/shellrc/. "${squashfs}"/usr/share/archroyal/extra/
-    cp -r "${project_dir}"/extra/desktop "${project_dir}"/extra/fonts "${project_dir}"/extra/archroyal-icon.png "${squashfs}"/usr/share/archroyal/extra/
     cat "${project_dir}"/extra/.helprc | tee -a "${squashfs}"/root/.zshrc >/dev/null
     cp "${project_dir}"/etc/hostname "${project_dir}"/etc/issue_cli "${squashfs}"/etc/
-    cp -r "${project_dir}"/boot/splash.png "${project_dir}"/boot/loader/ "${squashfs}"/usr/share/archroyal/boot/
     cp "${project_dir}"/etc/nvidia340.xx "${squashfs}"/usr/share/archroyal/etc/
 
     if [ -d branding ]; then

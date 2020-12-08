@@ -41,10 +41,10 @@ Replace `<username>` with your own `username` on docker hub.
 
 # Compiling ISO
 
-It is recommended to run the `compile.sh` script from `project root` with `-d` flag. If `archroyal:latest` docker image doesn't exist, it would be created:
+It is recommended to run the `compile` script from `project root` with `-d` flag. If `archroyal:latest` docker image doesn't exist, it would be created:
 
 ```bash
-$ ./compile.sh -d
+$ ./compile -d
 ```
 
 To build an `ISO` image using [Docker](https://www.docker.com) you need to map project root folder to `/archroyal` inside docker container to do so run the following command from `project root`:

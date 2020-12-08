@@ -112,7 +112,7 @@ config() {
 
             echo -ne "\n${Yellow}*> ArchRoyal: Updating..."
             tar zxf ${tmp_dir}/master.tar.gz -C ${tmp_dir} &> /dev/null
-            cp ${tmp_dir}/installer-master/archroyal-installer.sh /usr/bin/archroyal
+            cp ${tmp_dir}/installer-master/archroyal-installer /usr/bin/archroyal
             cp ${tmp_dir}/installer-master/etc/archroyal.conf /etc/archroyal.conf
             cp ${tmp_dir}/installer-master/lib/* /usr/lib/archroyal/
             cp ${tmp_dir}/installer-master/lang/* /usr/share/archroyal/lang/

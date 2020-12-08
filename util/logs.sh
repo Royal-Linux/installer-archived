@@ -1,3 +1,5 @@
+blank='\e[0m'
+white="\e[1m"
 red=`tput setaf 1`
 green=`tput setaf 2`
 yellow=`tput setaf 3`
@@ -17,10 +19,7 @@ disable_color() {
     yellow=${reset}
 }
 
-
 set_up_logging() {
-    log_dir=${1:-"/tmp"}
-
     if [ ! -d "${log_dir}" ]; then
         mkdir "${log_dir}"
     fi
@@ -28,8 +27,8 @@ set_up_logging() {
     log_file="${log_dir}"/iso-generator-"$(date +%d%m%y)".log
 
     # Remove existing logs and create a new one
-    if [ -e "${log_dir}"/"${log_file}" ]; then
-        rm "${log_dir}"/"${log_file}"
+    if [ -e "${log_file}" ]; then
+        rm "${log_file}"
     fi
 
     touch "${log_file}"

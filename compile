@@ -10,8 +10,8 @@
 ##         -c, --no-color      Disable color output
 ##         -d, --docker        Compile inside docker
 ##         -i, --no-input      Don't ask user for input
-##         -o, --output-dir    Specify directory for generated ISOs/checksums
-##         -l, --log-dir       Specify directory for logs
+##         --output-dir=DIR    Specify directory for generated ISOs/checksums
+##         --log-dir=DIR       Specify directory for logs
 ##         -h, --help          All client scripts have this, it can be omitted.
 ##
 ## Error codes:
@@ -37,26 +37,24 @@ source "$ROOT/util/logs.sh" || exit
 
 working_dir="$(pwd)"
 log_dir=${log_dir:-"${working_dir}"/logs}
-out_dir=${out_dir:-"${working_dir}"/logs} # Directory for generated ISOs
+out_dir=${out_dir:-"${working_dir}"/out} # Directory for generated ISOs
+docker_repo="archroyal:latest"
 
 # Boolean and parameter options
 [[ -n "$no_color" ]] && disable_color
 
 # Clears the screen and adds a banner
 prettify() {
-    # Source colors
-    colors
-
     clear
-    echo -e "${color_white}-- ArchRoyal Linux --${color_blank}"
+    echo -e "${white}-- ArchRoyal Linux --${blank}"
     echo -e ""
 }
 
 set_version() {
     # Label must be up to 11 chars long (incremental numbers)
-    arch_royal_iso_label="ARCH-ROYAL110"
-    arch_royal_iso_release="1.1.0"
-    arch_royal_iso_name="arch-royal-${arch_royal_iso_release}-x86_64.iso"
+    archroyal_iso_label="ARCH-ROYAL110"
+    archroyal_iso_release="1.1.0"
+    archroyal_iso_name="arch-royal-${archroyal_iso_release}-x86_64.iso"
 }
 
 init() {
@@ -153,7 +151,7 @@ check_dependencies() {
                     ;;
                 *)
                 echo -e "Chose not to install dependencies" | log
-                echo -e "${color_red}Error: Missing dependencies, exiting.${color_blank}" | log
+                echo -e "${red}Error: Missing dependencies, exiting.${blank}" | log
                 exit 1
                 ;;
             esac
@@ -198,7 +196,7 @@ update_arch_iso() {
                         ;;
                     *)
                     echo -e "Chose not to download image" | log
-                    echo -e "${color_red}Error: iso-generator requires an Arch Linux image located in: ${working_dir}, exiting.${color_blank}" | log
+                    echo -e "${red}Error: iso-generator requires an Arch Linux image located in: ${working_dir}, exiting.${blank}" | log
                     exit 2
                     ;;
                 esac
@@ -302,12 +300,12 @@ check_arch_iso() {
                     ;;
                 *)
                     echo -e "Chose not to continue" | log
-                    echo -e "${color_red}Error: Checksum did not match file, exiting!${color_blank}" | log
+                    echo -e "${red}Error: Checksum did not match file, exiting!${blank}" | log
                     exit 3
                     ;;
             esac
         else
-            echo -e "${color_red}Error: Checksum did not match file, exiting!${color_blank}" | log
+            echo -e "${red}Error: Checksum did not match file, exiting!${blank}" | log
             exit 3
         fi
     fi
@@ -317,32 +315,32 @@ check_arch_iso() {
 build_docker_image() {
     cd "${working_dir}"
     echo -e "\nBuilding docker image..." | log
-    docker build -t "${docker}" .
+    docker build -t "${docker_repo}" .
     if [ "$?" -eq 0 ]; then
-        echo -e "${color_green}\""${docker}"\" image created successfully.${color_blank}" | log
+        echo -e "${green}\""${docker_repo}"\" image created successfully.${blank}" | log
     else
-        echo -e "${color_red}Error: Docker image creation failed, exiting.${color_blank}" | log
+        echo -e "${red}Error: Docker image creation failed, exiting.${blank}" | log
         exit 6
     fi
 }
 
 # Spin up a docker container for compilation
 compile_in_docker() {
-    if [ "${docker_compile}" = true ]; then
+    if [ -n "${docker}" ]; then
         # Make sure docker is installed
         if [ $(command -v docker) ]; then
             # archroyal_docker_images=$(docker images | grep archroyal | awk '{print $1":"$2}' )
-            if [ -z $(docker images -q "${docker}") ]; then
-                echo -e "Local docker image \"${docker}\" does not exist. Creating..." | log
+            if [ -z $(docker images -q "${docker_repo}") ]; then
+                echo -e "Local docker image \"${docker_repo}\" does not exist. Creating..." | log
                 build_docker_image
             else
-                echo -e "Removing old docker image \"${docker}\"." | log
-                docker rmi -f "${docker}"
+                echo -e "Removing old docker image \"${docker_repo}\"." | log
+                docker rmi -f "${docker_repo}"
                 if [ "$?" -eq 0 ]; then
-                    echo -e "${color_green}\""${docker}"\" image removed successfully.${color_blank}" | log
+                    echo -e "${green}\""${docker_repo}"\" image removed successfully.${blank}" | log
                     build_docker_image
                 else
-                    echo -e "${color_red}Error: Docker image removal failed, exiting.${color_blank}" | log
+                    echo -e "${red}Error: Docker image removal failed, exiting.${blank}" | log
                     exit 6
                 fi
             fi
@@ -352,7 +350,7 @@ compile_in_docker() {
                 -v "${PWD}":/project \
                 -e archroyal_iso_label="${archroyal_iso_label}" \
                 -e archroyal_iso_release="${archroyal_iso_release}" \
-                "${docker}"
+                "${docker_repo}"
             exit 0
         else
             echo -e "Docker is not installed\!" | log
@@ -423,8 +421,10 @@ copy_config_files() {
     # Copy over main ArchRoyal config and installer script, make them executable
     echo -e "Adding archroyal config and installer scripts to iso ..." | log
     sudo cp "${working_dir}"/etc/archroyal.conf "${working_dir}"/etc/pacman.conf "${squashfs}"/etc/
-    sudo cp "${working_dir}"/archroyal-installer.sh "${squashfs}"/usr/bin/archroyal
+    sudo cp "${working_dir}"/archroyal-installer "${squashfs}"/usr/bin/archroyal
     sudo cp "${working_dir}"/extra/sysinfo "${working_dir}"/extra/iptest "${squashfs}"/usr/bin/
+    sudo cp "${working_dir}"/extra/shellrc/.zshrc "${squashfs}"/etc/zsh/zshrc
+    cat "${working_dir}"/extra/.helprc | sudo tee -a "${squashfs}"/root/.zshrc >/dev/null
     sudo chmod +x "${squashfs}"/usr/bin/archroyal "${squashfs}"/usr/bin/sysinfo "${squashfs}"/usr/bin/iptest
 
     # Create ArchRoyal and lang directories, copy over all lang files
@@ -497,7 +497,7 @@ configure_boot() {
     echo -e "Replacing label hex in efiboot.img...\n${arch_iso_label} ${arch_iso_hex} > ${archroyal_iso_label} ${archroyal_iso_hex}" | log
     xxd -c 256 -p efiboot.img | sed "s/${arch_iso_hex}/${archroyal_iso_hex}/" | xxd -r -p > efiboot1.img
     if ! (xxd -c 256 -p efiboot1.img | grep "${archroyal_iso_hex}" &>/dev/null); then
-        echo -e "${color_red}\nError: failed to replace label hex in efiboot.img${color_blank}" | log
+        echo -e "${red}\nError: failed to replace label hex in efiboot.img${blank}" | log
         echo -e "Press any key to continue."
         read input
     fi
@@ -527,7 +527,7 @@ create_iso() {
         rm -rf "${custom_iso}"
         generate_checksums
     else
-        echo -e "${color_red}Error: Image creation failed, exiting.${color_blank}" | log
+        echo -e "${red}Error: Image creation failed, exiting.${blank}" | log
         exit 4
     fi
 }
@@ -578,7 +578,7 @@ cleanup() {
     if [ "${last_command}" = "init" ]; then
         echo -e "User force stopped the script" | log
     else
-        echo -e "${color_red}An error occured: ${last_command} exited with error code $?${color_blank}" | log
+        echo -e "${red}An error occured: ${last_command} exited with error code $?${blank}" | log
     fi
 
     # Check if customiso is mounted
@@ -595,9 +595,9 @@ cleanup() {
     fi
 
     if [ "${last_command}" != "init" ]; then
-        echo -e "${color_white}Please report this issue to our Github issue tracker: https://git.io/JeOxK${color_blank}"
-        echo -e "${color_white}Make sure to include the relevant log: ${log_file}${color_blank}"
-        echo -e "${color_white}You can also ask about the issue in our Telegram: https://t.me/archroyal_linux${color_blank}"
+        echo -e "${white}Please report this issue to our Github issue tracker: https://git.io/JeOxK${blank}"
+        echo -e "${white}Make sure to include the relevant log: ${log_file}${blank}"
+        echo -e "${white}You can also ask about the issue in our Telegram: https://t.me/archroyal_linux${blank}"
     fi
 }
 
@@ -615,5 +615,5 @@ build_system
 configure_boot
 create_iso
 uninstall_dependencies
-echo -e "${color_green}${archroyal_iso_name} image generated successfully. Check 'out' directory\n${color_blank}" | log
+echo -e "${green}${archroyal_iso_name} image generated successfully. Check 'out' directory\n${blank}" | log
 exit 0
