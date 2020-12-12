@@ -6,7 +6,7 @@
 # * Don't edit variables within the text (e.g. /dev/${DRIVE} or ${user})
 
 translate() {
-    key="$1"
+    key="$@"
     # TODO: find a cleaner way to do env substitution
     # eval echo -E $(gettext -s "$key")
     echo $(gettext -s "$key")
