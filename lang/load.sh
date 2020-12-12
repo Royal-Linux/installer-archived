@@ -8,8 +8,8 @@
 translate() {
     key="$1"
     # TODO: find a cleaner way to do env substitution
-    # eval echo -E $(gettext -s $key)
-    echo $(gettext -s $key)
+    # eval echo -E $(gettext -s "$key")
+    echo $(gettext -s "$key")
 }
 
 translate_this() {
