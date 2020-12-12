@@ -87,7 +87,7 @@ init() {
         'opensnap'
         'perl-linux-desktopfiles'
         'obmenu-generator'
-        'yay-bin'
+        # 'yay-bin'
         'openbox-themes'
         'arch-wiki-cli'
         'pygtk'
