@@ -1,5 +1,0 @@
-msgid "title"
-msgstr " -| ArchRoyal |- "
-
-msgid "backtitle"
-msgstr " -| ArchRoyal Linux Installer |- "

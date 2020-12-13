@@ -1,8 +1,0 @@
-msgid "method0"
-msgstr "Auto Partition Drive"
-
-msgid "method1"
-msgstr "Auto partition encrypted LVM"
-
-msgid "method2"
-msgstr "Manual Partition Drive"
