@@ -1,11 +1,7 @@
-# ArchLinux ISOs, checksums etc.
-archlinux-*-x86_64.iso
-sha1sums.txt
-
-# ArchRoyal-generated dirs
-logs
+# Archiso build artifacts
 out
+work
+archroyal_build
 
-# ArchRoyal ISOs, checksums etc.
-archroyal-*-x86_64.iso
-archroyal-*-x86_64.iso.*
+# Bump script backup files
+profiledef.sh.bak

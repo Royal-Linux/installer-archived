@@ -1,30 +1,12 @@
-FROM archlinux/base:latest
+FROM docker.io/archlinux:latest
 
+# In case we publish the image anywhere
 LABEL maintainer="Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>"
 
-# Load setup binaries
-COPY ./docker/setup.sh /usr/bin
-RUN chmod +x /usr/bin/setup.sh
-COPY ./docker/add-aur.sh /usr/bin
-RUN chmod +x /usr/bin/add-aur.sh
+# Needed to properly set variables inside and outside the container
+ENV IS_CONTAINER="yes"
 
-# COPY ./docker/docker-compile.sh /usr/bin
-# RUN chmod +x /usr/bin/docker-compile.sh
-
-RUN pacman -Syu --needed --noconfirm arch-install-scripts
-
-# Add non root user (builder). Needed for AURs compile & install
-RUN bash /usr/bin/add-aur.sh builder
-# Make packages available offline
-RUN bash /usr/bin/setup.sh
-
-# Clean up
-# RUN pacman -Scc --noconfirm
-
-# Not embedding 'docker-compile.sh' into docker image
-# makes instant changes to compile process easy.
-# Compile ISO using project script outside container
-CMD [ "bash", "/usr/src/app/docker/docker-compile.sh" ]
-
-# ENTRYPOINT ["/usr/bin/docker-compile.sh"]
-# WORKDIR /usr/src/app
+RUN pacman -Sy --noconfirm archiso mkinitcpio-archiso reflector
+COPY assets /archroyal/assets
+COPY src util build.sh profiledef.sh /archroyal/
+ENTRYPOINT ["/archroyal/build.sh"]
