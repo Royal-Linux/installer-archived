@@ -1,7 +1,0 @@
-alias start="cat /etc/issue_cli"
-alias 1="archroyal"
-alias 2="archroyal -u"
-alias 3="archroyal -k"
-alias 4="iptest"
-alias 5="sysinfo"
-cat /etc/issue_cli
