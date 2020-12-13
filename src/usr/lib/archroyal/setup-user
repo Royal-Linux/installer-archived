@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (C) 2017 Dylan Schacht
+# Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
 
 set_user() {
   while (true); do # Begin user menu while loop

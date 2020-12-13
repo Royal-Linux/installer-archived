@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (C) 2017 Dylan Schacht
+# Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
 
 cal_rate() {
   case "${connection_rate}" in
