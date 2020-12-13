@@ -37,6 +37,8 @@ dependencies=(
     'file'
     'grep'
     'xz'
+    'archiso'
+    'mkinitcpio-archiso'
 )
 
 check_dependencies() {
@@ -59,7 +61,6 @@ local_repo_builds() {
         for pkg in "${local_aur_packages[@]}"; do
             echo -e "Making ${pkg} ..."
             wget -qO- "${aur_snapshot_link}/${pkg}.tar.gz" | tar xz -C /home/builder/
-            # TODO: use "builder" user
             chown -R builder /home/builder/
             cd /home/builder/"${pkg}" || exit
             su builder -c 'makepkg -sif --noconfirm --nocheck'

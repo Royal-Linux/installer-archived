@@ -34,10 +34,7 @@ sed -i "s,PKGEXT='.pkg.tar.xz',PKGEXT='.pkg.tar',g" /etc/makepkg.conf
 
 # install yay
 su $AUR_USER -c 'cd; git clone https://aur.archlinux.org/yay.git'
-su $AUR_USER -c 'cd; cd yay; makepkg'
-pushd /home/$AUR_USER/yay/
-pacman -U *.pkg.tar --noprogressbar --noconfirm
-popd
+su $AUR_USER -c 'cd; cd yay; makepkg -si --noconfirm'
 rm -rf /home/$AUR_USER/yay
 
 # do a yay system update

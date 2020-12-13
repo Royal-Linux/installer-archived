@@ -97,7 +97,7 @@ copy_config_files() {
     # Create ArchRoyal and lang directories, copy over all lang files
     echo "Adding language files to iso ..."
     mkdir -p "${squashfs}"/usr/share/archroyal/lang "${squashfs}"/usr/share/archroyal/extra "${squashfs}"/usr/share/archroyal/boot "${squashfs}"/usr/share/archroyal/etc
-    cp "${project_dir}"/lang/* "${squashfs}"/usr/share/archroyal/lang/
+    cp -r "${project_dir}"/lang/* "${squashfs}"/usr/share/archroyal/lang/
 
     # Create shell function library, copy /lib to squashfs-root
     echo "Adding archroyal scripts to iso ..."
@@ -108,10 +108,11 @@ copy_config_files() {
     echo -e "Adding dot files and desktop configurations to iso ..."
     rm "${squashfs}"/root/install.txt
     cp "${project_dir}"/extra/shellrc/.zshrc "${squashfs}"/root/
-    cp "${project_dir}"/extra/.helprc "${project_dir}"/extra/.dialogrc "${squashfs}"/root/
+    cp "${project_dir}"/extra/.help "${project_dir}"/extra/.dialogrc "${squashfs}"/root/
     cp "${project_dir}"/extra/shellrc/.zshrc "${squashfs}"/etc/zsh/zshrc
     cat "${project_dir}"/extra/.helprc | tee -a "${squashfs}"/root/.zshrc >/dev/null
     cp "${project_dir}"/etc/hostname "${project_dir}"/etc/issue_cli "${squashfs}"/etc/
+    cp -r "${project_dir}"/boot/splash.png "${project_dir}"/boot/loader/ "${squashfs}"/usr/share/archroyal/boot/
     cp "${project_dir}"/etc/nvidia340.xx "${squashfs}"/usr/share/archroyal/etc/
 
     if [ -d branding ]; then
@@ -124,13 +125,13 @@ copy_config_files() {
     echo "Adding built AUR packages to iso ..."
     mkdir "${custom_iso}"/arch/x86_64/squashfs-root/usr/share/archroyal/pkg
 
-    for pkg in $(echo "${local_aur_packages[@]}"); do
-        cp /home/builder/"${pkg}"/*.pkg.tar.xz "${squashfs}"/usr/share/archroyal/pkg/
-    done
+    # for pkg in $(echo "${local_aur_packages[@]}"); do
+    #     cp /home/builder/"${pkg}"/*.pkg.tar.xz "${squashfs}"/usr/share/archroyal/pkg/
+    # done
 
-    cd "${squashfs}"/usr/share/archroyal/pkg || exit
-    repo-add archroyal-local.db.tar.gz *.pkg.tar.xz
-    cd "${project_dir}" || exit
+    # cd "${squashfs}"/usr/share/archroyal/pkg || exit
+    # repo-add archroyal-local.db.tar.gz *.pkg.tar.xz
+    # cd "${project_dir}" || exit
 
     echo "Done adding files to iso"
     echo ""
@@ -162,43 +163,31 @@ build_system() {
 
 configure_boot() {
     echo "Configuring boot ..."
-    arch_iso_label="$(<"${custom_iso}"/loader/entries/archiso-x86_64.conf awk 'NR==6{print $NF}' | sed 's/.*=//')"
-    arch_iso_hex="$(<<<"${arch_iso_label}" xxd -p)"
-    archroyal_iso_hex="$(<<<"${archroyal_iso_label}" xxd -p)"
-    cp "${project_dir}"/boot/splash.png "${custom_iso}"/arch/boot/syslinux/
-    cp "${project_dir}"/boot/iso/archiso_head.cfg "${custom_iso}"/arch/boot/syslinux/
-    sed -i "s/${arch_iso_label}/${archroyal_iso_label}/;s/Arch Linux archiso/ArchRoyal Linux/" "${custom_iso}"/loader/entries/archiso-x86_64.conf
-    sed -i "s/${arch_iso_label}/${archroyal_iso_label}/;s/Arch Linux/ArchRoyal Linux/" "${custom_iso}"/arch/boot/syslinux/archiso_sys.cfg
-    sed -i "s/${arch_iso_label}/${archroyal_iso_label}/;s/Arch Linux/ArchRoyal Linux/" "${custom_iso}"/arch/boot/syslinux/archiso_pxe.cfg
-    cd "${custom_iso}"/EFI/archiso/ || exit
-    echo -e "Replacing label hex in efiboot.img...\n${arch_iso_label} ${arch_iso_hex} > ${archroyal_iso_label} ${archroyal_iso_hex}"
-    xxd -c 256 -p efiboot.img | sed "s/${arch_iso_hex}/${archroyal_iso_hex}/" | xxd -r -p > efiboot1.img
-    if ! (xxd -c 256 -p efiboot1.img | grep "${archroyal_iso_hex}" &>/dev/null); then
-        echo -e "\nError: failed to replace label hex in efiboot.img"
-        echo -e "Press any key to continue."
-        read input
-    fi
-    mv efiboot1.img efiboot.img
-    echo "Done configuring boot"
-    echo ""
+    # arch_iso_label="$(<"${custom_iso}"/loader/entries/archiso-x86_64-linux.conf awk 'NR==6{print $NF}' | sed 's/.*=//')"
+    # arch_iso_hex="$(<<<"${arch_iso_label}" xxd -p)"
+    # archroyal_iso_hex="$(<<<"${archroyal_iso_label}" xxd -p)"
+
+    # Replace profiledef file
+    # rm "${custom_iso}"/profiledef.sh
+    cp "${working_dir}"/profiledef.sh "${custom_iso}"/
+
+    cp "${project_dir}"/boot/splash.png "${custom_iso}"/syslinux/
+
+    sed -i 's/Arch Linux install medium/ArchRoyal Installer/' "${custom_iso}"/loader/entries/archiso-x86_64-linux.conf
+    sed -i 's/Arch Linux install medium/ArchRoyal Installer/' "${custom_iso}"/syslinux/archiso_sys-linux.cfg
+    sed -i 's/Arch Linux/ArchRoyal/' "${custom_iso}"/syslinux/archiso_sys-linux.cfg
+    sed -i 's/Arch Linux install medium/ArchRoyal Installer/' "${custom_iso}"/syslinux/archiso_pxe-linux.cfg
+    sed -i 's/Arch Linux/ArchRoyal/' "${custom_iso}"/syslinux/archiso_pxe-linux.cfg
+    sed -i 's/Arch Linux/ArchRoyal Installer/' "${custom_iso}"/syslinux/archiso_head.cfg
+
+    echo -e "Done configuring boot"
+    echo -e ""
 }
 
 create_iso() {
     echo "Creating new ArchRoyal image ..."
     cd "${project_dir}" || exit
-    xorriso -as mkisofs \
-        -iso-level 3 \
-        -full-iso9660-filenames \
-        -volid "${archroyal_iso_label}" \
-        -eltorito-boot isolinux/isolinux.bin \
-        -eltorito-catalog isolinux/boot.cat \
-        -no-emul-boot -boot-load-size 4 -boot-info-table \
-        -isohybrid-mbr customiso/isolinux/isohdpfx.bin \
-        -eltorito-alt-boot \
-        -e EFI/archiso/efiboot.img \
-        -no-emul-boot -isohybrid-gpt-basdat \
-        -output "${out_dir}"/"${archroyal_iso_name}" \
-        "${custom_iso}"
+    mkarchiso -v "${custom_iso}" || exit
 
     if [ "$?" -eq 0 ]; then
         rm -rf "${custom_iso}"

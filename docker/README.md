@@ -52,7 +52,7 @@ To build an `ISO` image using [Docker](https://www.docker.com) you need to map p
 ```bash
 $ docker run --rm --privileged \
     --device-cgroup-rule='b 7:* rmw' \
-    -v "${PWD}":/project \
+    -v "${PWD}":/usr/src/app \
     -e archroyal_iso_label=ARCHROYAL \
     -e archroyal_iso_release=0.0.1 \
     archroyal:latest
@@ -65,7 +65,7 @@ You can start a fresh container and walk trough the process with:
 ```bash
 $ docker run --rm --privileged \
     --device-cgroup-rule='b 7:* rmw' \
-    -v "${PWD}":/project \
+    -v "${PWD}":/usr/src/app \
     -e archroyal_iso_label=ARCHROYAL \
     -e archroyal_iso_release=0.0.1 \
     -it archroyal:latest
