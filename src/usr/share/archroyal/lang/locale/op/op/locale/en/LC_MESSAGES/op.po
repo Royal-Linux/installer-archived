@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-07 13:28-0300\n"
+"PO-Revision-Date: 2020-12-07 13:28-0300\n"
+"Last-Translator:  <ulisescf.24@gmail.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "welcome_op_msg"
+msgstr " -| ArchRoyal Linux |- "
+
+msgid "connection_op_msg"
+msgstr " -| Check Connection |- "
+
+msgid "locale_op_msg"
+msgstr " -| Set Locale |- "
+
+msgid "zone_op_msg"
+msgstr " -| Set Timezone |- "
+
+msgid "key_op_msg"
+msgstr " -| Set Keymap |- "
+
+msgid "part_op_msg"
+msgstr " -| Partition Drive |- "
+
+msgid "partload_op_msg"
+msgstr " -| Partitioning Drive |- "
+
+msgid "manual_op_msg"
+msgstr " -| Partition Menu |- "
+
+msgid "edit_op_msg"
+msgstr " -| Edit Partition |- "
+
+msgid "mirror_op_msg"
+msgstr " -| Update Mirrorlist |- "
+
+msgid "install_op_msg"
+msgstr " -| Install System |- "
+
+msgid "config_op_msg"
+msgstr " -| Configure System |- "
+
+msgid "host_op_msg"
+msgstr " -| Set Hostname |- "
+
+msgid "passwd_op_msg"
+msgstr " -| Set Password |- "
+
+msgid "user_op_msg"
+msgstr " -| Add User |- "
+
+msgid "user_op_msg1"
+msgstr " -| Edit User |- "
+
+msgid "de_op_msg"
+msgstr " -| Install Desktop |- "
+
+msgid "software_op_msg"
+msgstr " -| Install Software |- "
+
+msgid "complete_op_msg"
+msgstr " -| Install Complete |- "
+
+msgid "menu_op_msg"
+msgstr " -| Main Menu |- "
+
+msgid "install_opt_msg"
+msgstr ""
+"Select your desired install option: \n"
+"\n"
+" $a Quick install select 'ArchRoyal-Desktop' or 'ArchRoyal-Server' \n"
+" $a Advanced install options select 'ArchRoyal-Advanced'"
+
+msgid "install_opt0"
+msgstr "Manually selection install options"
+
+msgid "install_opt1"
+msgstr "Quick desktop install"
+
+msgid "install_opt2"
+msgstr "Quick LTS desktop install"
+
+msgid "install_opt3"
+msgstr "Quick server install"
+
+msgid "install_opt4"
+msgstr "Quick LTS server install"

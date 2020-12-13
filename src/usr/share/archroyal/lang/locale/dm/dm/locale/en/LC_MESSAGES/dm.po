@@ -1,0 +1,11 @@
+msgid "dm0"
+msgstr "GNOME Desktop Display Manager"
+
+msgid "dm1"
+msgstr "Multi Desktop Display Manager"
+
+msgid "dm2"
+msgstr "Lxdm Desktop Display Manager"
+
+msgid "dm3"
+msgstr "Simple Desktop Display Manager"

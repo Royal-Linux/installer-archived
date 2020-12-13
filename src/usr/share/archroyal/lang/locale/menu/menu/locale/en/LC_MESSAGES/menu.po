@@ -1,0 +1,194 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-07 13:25-0300\n"
+"PO-Revision-Date: 2020-12-07 13:25-0300\n"
+"Last-Translator:  <ulisescf.24@gmail.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "menu"
+msgstr ""
+"Menu Items: \n"
+"\n"
+" $a Start a 'Command Line Session' to run custom commands\n"
+" $a Return to installer with 'arch-royal'"
+
+msgid "menu0"
+msgstr "Re-Set Locale"
+
+msgid "menu1"
+msgstr "Re-Set Timezone"
+
+msgid "menu2"
+msgstr "Re-Set Keymap"
+
+msgid "menu3"
+msgstr "Partition Drive"
+
+msgid "menu4"
+msgstr "Update Mirror list"
+
+msgid "menu5"
+msgstr "Install Base System"
+
+msgid "menu11"
+msgstr "Reboot System"
+
+msgid "menu12"
+msgstr "Exit Installer"
+
+msgid "menu13"
+msgstr "Command Line Session"
+
+msgid "menu_err_msg3"
+msgstr ""
+"Drive already mounted, ready to install system. \n"
+"\n"
+" $a Are you sure you want to return to partition menu?"
+
+msgid "menu_exit_msg"
+msgstr ""
+"System not installed yet... \n"
+"\n"
+" $a Are you sure you want to exit?"
+
+msgid "steam_add_msg"
+msgstr ""
+"Installing Steam requires multilib to be enabled. \n"
+"\n"
+" $a Enable multilib repos now?"
+
+msgid "audio"
+msgstr "Audio"
+
+msgid "audio_msg"
+msgstr "Audio Software =>"
+
+msgid "database"
+msgstr "Database"
+
+msgid "database_msg"
+msgstr "Database Software =>"
+
+msgid "graphic"
+msgstr "Graphics"
+
+msgid "graphic_msg"
+msgstr "Graphics Software =>"
+
+msgid "internet"
+msgstr "Internet"
+
+msgid "internet_msg"
+msgstr "Internet Software =>"
+
+msgid "multimedia"
+msgstr "Multimedia"
+
+msgid "multimedia_msg"
+msgstr "Multimedia Software =>"
+
+msgid "office"
+msgstr "Office"
+
+msgid "office_msg"
+msgstr "Office Software =>"
+
+msgid "programming"
+msgstr "Programming"
+
+msgid "program_msg"
+msgstr "Programming Software =>"
+
+msgid "terminal"
+msgstr "Terminal"
+
+msgid "terminal_msg"
+msgstr "Terminal Emulators =>"
+
+msgid "text_editor"
+msgstr "Text Editors"
+
+msgid "text_editor_msg"
+msgstr "Text Editing Software =>"
+
+msgid "util"
+msgstr "Utilities"
+
+msgid "util_msg"
+msgstr "Utilities Software =>"
+
+msgid "servers"
+msgstr "Server"
+
+msgid "servers_msg"
+msgstr "Server software =>"
+
+msgid "fonts"
+msgstr "Fonts"
+
+msgid "fonts_msg"
+msgstr "Linux Fonts =>"
+
+msgid "games"
+msgstr "Games"
+
+msgid "games_msg"
+msgstr "Linux Games =>"
+
+msgid "extra_de"
+msgstr "Extra Desktop"
+
+msgid "extra_de_msg"
+msgstr "Extra Desktop Environment =>"
+
+msgid "extra_wm"
+msgstr "Extra WM"
+
+msgid "extra_wm_msg"
+msgstr "Extra Windows Managers =>"
+
+msgid "reboot0"
+msgstr "Reboot System"
+
+msgid "reboot1"
+msgstr "Return To Command Prompt"
+
+msgid "reboot2"
+msgstr "ArchRoyal-Chroot Into Installed System"
+
+msgid "reboot3"
+msgstr "Add New User Account"
+
+msgid "reboot4"
+msgstr "View Install Log"
+
+msgid "reboot5"
+msgstr "Install Additional Software"
+
+msgid "reboot6"
+msgstr "Power Off System"
+
+msgid "customized_de"
+msgstr "Customized Desktop"
+
+msgid "customized_de_msg"
+msgstr "Customized Desktop Environments =>"
+
+msgid "more_de"
+msgstr "Clean Desktop Environments"
+
+msgid "more_de_msg"
+msgstr "Default Desktop Environments =>"
+
+msgid "more_wm"
+msgstr "More Window Managers"
+
+msgid "more_wm_msg"
+msgstr "Default Window Managers =>"

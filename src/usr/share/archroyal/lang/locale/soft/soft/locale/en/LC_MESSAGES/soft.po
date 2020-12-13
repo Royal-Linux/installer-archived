@@ -1,0 +1,515 @@
+msgid "audio0"
+msgstr "Audio editing program"
+
+msgid "audio1"
+msgstr "Advanced audio player"
+
+msgid "audio2"
+msgstr "CLI music player"
+
+msgid "audio3"
+msgstr "JACK Audio Connection Kit"
+
+msgid "audio4"
+msgstr "Music visualizer program"
+
+msgid "audio5"
+msgstr "Linux MultiMedia Studio"
+
+msgid "audio6"
+msgstr "Music Player Daemon"
+
+msgid "audio7"
+msgstr "GUI client for MPD"
+
+msgid "audio8"
+msgstr "PulseAudio Volume Control"
+
+msgid "audio9"
+msgstr "Console frontend for Pandora"
+
+msgid "audio10"
+msgstr "Music player and library organizer"
+
+msgid "audio11"
+msgstr "Equalizer for pulseaudio"
+
+msgid "audio13"
+msgstr "Qt5 based audio-player"
+
+msgid "audio14"
+msgstr "Music playback application"
+
+msgid "db0"
+msgstr "A document-oriented database"
+
+msgid "db1"
+msgstr "High-performance, open source database"
+
+msgid "db2"
+msgstr "SQL server implimentation"
+
+msgid "db3"
+msgstr "Sqlite module for PHP"
+
+msgid "db4"
+msgstr "Advanced key-value store"
+
+msgid "db5"
+msgstr "Powerful and scalable NoSQL database"
+
+msgid "db6"
+msgstr "SQL database engine written in C"
+
+msgid "sys30"
+msgstr "Fast SQL database server"
+
+msgid "sys31"
+msgstr "Sophisticated object-relational DBMS"
+
+msgid "sys32"
+msgstr "Web-based tool to administrate MySQL"
+
+msgid "net0"
+msgstr "Chromium Web Browser"
+
+msgid "net1"
+msgstr "FTP, FTPS and SFTP client"
+
+msgid "net2"
+msgstr "Firefox Web Browser"
+
+msgid "net3"
+msgstr "Console Web Browser"
+
+msgid "net4"
+msgstr "Watch YouTube videos"
+
+msgid "net5"
+msgstr "A fast and secure web browser"
+
+msgid "net6"
+msgstr "Email and news client"
+
+msgid "net7"
+msgstr "Console torrent client"
+
+msgid "net8"
+msgstr "Graphical torrent client"
+
+msgid "net9"
+msgstr "Highly-configurable IRC client"
+
+msgid "net10"
+msgstr "GTK-based IRC client"
+
+msgid "net11"
+msgstr "GTK-based IRC client"
+
+msgid "net12"
+msgstr "Lightweight web browser"
+
+msgid "font0"
+msgstr "Unicode fonts"
+
+msgid "font1"
+msgstr "Fonts which support CN, JP, KR"
+
+msgid "game0"
+msgstr "Free FPS focused mainly on online multiplayer"
+
+msgid "game1"
+msgstr "Port of classic BSD command line games"
+
+msgid "game2"
+msgstr "Multiperson, first-person tank shooter"
+
+msgid "game3"
+msgstr "Open-source flight simulator"
+
+msgid "game4"
+msgstr "Classic UNIX-based chess game"
+
+msgid "game5"
+msgstr "Similar to  SuperMario games"
+
+msgid "game6"
+msgstr "Kart racing game featuring Tux"
+
+msgid "game7"
+msgstr "Modern multiplayer FPS"
+
+msgid "game8"
+msgstr "Fast paced multiplayer FPS"
+
+msgid "game9"
+msgstr "Free, open-source first person shooter"
+
+msgid "game10"
+msgstr "Valve's digital software delivery system"
+
+msgid "game11"
+msgstr "AisleRiot Solitaire collection"
+
+msgid "graphic0"
+msgstr "3D graphics creation suite"
+
+msgid "graphic1"
+msgstr "Photography development application"
+
+msgid "graphic2"
+msgstr "GNU Image Manipulation"
+
+msgid "graphic3"
+msgstr "Set of tools for drawing graphs"
+
+msgid "graphic4"
+msgstr "Command-line image manipulation program"
+
+msgid "graphic5"
+msgstr "Drawing and editing program"
+
+msgid "graphic6"
+msgstr "Lightweight image viewer"
+
+msgid "graphic7"
+msgstr "A powerful raw image processing program"
+
+msgid "graphic8"
+msgstr "Image processing system"
+
+msgid "graphic9"
+msgstr "Professional vector graphics editor"
+
+msgid "graphic10"
+msgstr "Paint icons and pixel based artwork"
+
+msgid "graphic11"
+msgstr "Painting application for digital painters"
+
+msgid "media0"
+msgstr "Multithreaded video transcoder"
+
+msgid "media1"
+msgstr "Media Player"
+
+msgid "media2"
+msgstr "Video editing software"
+
+msgid "media3"
+msgstr "Screen capture software"
+
+msgid "media4"
+msgstr "A free front-end for MPlayer"
+
+msgid "media5"
+msgstr "GNOME media player"
+
+msgid "media6"
+msgstr "VLC graphical media player"
+
+msgid "media7"
+msgstr "Media player-MPlayer based"
+
+msgid "media8"
+msgstr "Multimedia codecs"
+
+msgid "media9"
+msgstr "Full featured video editor for Linux"
+
+msgid "media10"
+msgstr "Screencast GIF tool"
+
+msgid "media11"
+msgstr "Powerful and simple media player"
+
+msgid "media12"
+msgstr "Download videos and audio from YouTube"
+
+msgid "office0"
+msgstr "Free word processing"
+
+msgid "office1"
+msgstr "Graphic Art And Office Suite"
+
+msgid "office2"
+msgstr "Powerful spreadsheet application"
+
+msgid "office3"
+msgstr "Powerful spreadsheet application"
+
+msgid "office4"
+msgstr "Office word processor latest"
+
+msgid "office5"
+msgstr "Office word processor maintenance"
+
+msgid "office6"
+msgstr "Lightweight PDF and XPS viewer"
+
+msgid "office7"
+msgstr "Minimalistic document viewer"
+
+msgid "office8"
+msgstr "A collaborative office text editor"
+
+msgid "office9"
+msgstr "Office document viewer for GNOME"
+
+msgid "office10"
+msgstr "Create labels and business cards"
+
+msgid "office11"
+msgstr "Desktop publishing software"
+
+msgid "prg0"
+msgstr "Common Lisp interpreter, compiler and debugger"
+
+msgid "prg1"
+msgstr "The D programming language and compiler"
+
+msgid "prg2"
+msgstr "The dart programming language SDK"
+
+msgid "prg3"
+msgstr "The Go programming language"
+
+msgid "prg4"
+msgstr "Developer tools for Go language"
+
+msgid "prg5"
+msgstr "Java Runtime Environments"
+
+msgid "prg7"
+msgstr "OpenJDK Java 8 development kit"
+
+msgid "prg8"
+msgstr "OpenJFX 8 client application platform"
+
+msgid "prg9"
+msgstr "A feature-rich programming language"
+
+msgid "prg10"
+msgstr "A general-purpose scripting language"
+
+msgid "prg11"
+msgstr "High-level scripting language"
+
+msgid "prg12"
+msgstr "An object-oriented language"
+
+msgid "prg13"
+msgstr "Object-oriented and functional based"
+
+msgid "prg14"
+msgstr "OpenJDK Java 11 development kit"
+
+msgid "prg15"
+msgstr "OpenJDK Java 12 development kit"
+
+msgid "term0"
+msgstr "Framebuffer Terminal Emulator"
+
+msgid "term1"
+msgstr "GNOME Dropdown Terminal"
+
+msgid "term2"
+msgstr "Simple terminal emulator"
+
+msgid "term3"
+msgstr "Light Weight Terminal"
+
+msgid "term4"
+msgstr "urxvt Terminal Emulator"
+
+msgid "term5"
+msgstr "Terminator Terminal Emulator"
+
+msgid "term6"
+msgstr "XFCE4 Terminal Emulator"
+
+msgid "term7"
+msgstr "Drop-down terminal (Quake style)"
+
+msgid "term8"
+msgstr "A simple terminal emulator for X"
+
+msgid "term9"
+msgstr "A simple VTE-based terminal"
+
+msgid "term10"
+msgstr "EFL based terminal emulator"
+
+msgid "term11"
+msgstr "Quake and Doom inspired terminal"
+
+msgid "term12"
+msgstr "Terminal which mimics a cathode display"
+
+msgid "term13"
+msgstr "A tiling terminal emulator for Linux using GTK+ 3"
+
+msgid "edit0"
+msgstr "OS in a text editor"
+
+msgid "edit1"
+msgstr "A text editor using GTK2"
+
+msgid "edit2"
+msgstr "GNOME Text editor"
+
+msgid "edit3"
+msgstr "Graphical interface for Vim"
+
+msgid "edit4"
+msgstr "XFCE4 Text editor"
+
+msgid "edit5"
+msgstr "Popular fork of VIM editor"
+
+msgid "edit6"
+msgstr "Console Text Editor fork of vi"
+
+msgid "edit7"
+msgstr "Atom feature rich text editor"
+
+msgid "edit8"
+msgstr "A WYSIWYG text editor"
+
+msgid "shell0"
+msgstr "DASH command shell (Debian Almquist shell)"
+
+msgid "shell1"
+msgstr "Fish command shell (friendly interactive shell)"
+
+msgid "shell2"
+msgstr "Korn command shell (mksh enhanced ksh)"
+
+msgid "shell3"
+msgstr "tcsh/C command Shell (The C Shell)"
+
+msgid "shell4"
+msgstr "Z-Shell command shell (Powerful & Feature rich)"
+
+msgid "shell5"
+msgstr "Bourne again shell (Default Linux shell)"
+
+msgid "srv1"
+msgstr "Linux Apache MariaDB PHP server stack"
+
+msgid "srv2"
+msgstr "Linux Nginx MariaDB PHP server stack"
+
+msgid "srv3"
+msgstr "Nginx HTTP/Proxy Server (Stable Branch)"
+
+msgid "srv4"
+msgstr "Nginx HTTP/Proxy Server (Latest Branch)"
+
+msgid "srv5"
+msgstr "Light Flexible HTTP Server"
+
+msgid "srv6"
+msgstr "Secure fast mail server"
+
+msgid "srv7"
+msgstr "Very Secure FTP daemon"
+
+msgid "srv8"
+msgstr "Full-featured Web proxy cache server"
+
+msgid "srv9"
+msgstr "SMB Fileserver and AD Domain server"
+
+msgid "srv10"
+msgstr "The ISC DNS Server"
+
+msgid "srv11"
+msgstr "The CUPS Printing System"
+
+msgid "sys1"
+msgstr "Apache High Proformance HTTP Server"
+
+msgid "sys10"
+msgstr "Secure Shell Deamon"
+
+msgid "sys2"
+msgstr "Light system monitor for X"
+
+msgid "sys3"
+msgstr "Source control management"
+
+msgid "sys4"
+msgstr "Partition and disk managment"
+
+msgid "sys5"
+msgstr "A mouse server for the console"
+
+msgid "sys6"
+msgstr "CLI process Info"
+
+msgid "sys7"
+msgstr "Arch wiki CLI utility"
+
+msgid "sys8"
+msgstr "CD/DVD writing suite"
+
+msgid "sys9"
+msgstr "CLI network analyzer"
+
+msgid "sys11"
+msgstr "GNU Screen"
+
+msgid "sys12"
+msgstr "Display System Info"
+
+msgid "sys13"
+msgstr "Simple command-line screenshot"
+
+msgid "sys14"
+msgstr "Terminal multiplxer"
+
+msgid "sys15"
+msgstr "Twin-panel file manager"
+
+msgid "sys16"
+msgstr "Desktop virtualization"
+
+msgid "sys17"
+msgstr "Uncomplicated Firewall"
+
+msgid "sys18"
+msgstr "Wget CLI downloader"
+
+msgid "sys19"
+msgstr "Lightweight dynamic menu for X"
+
+msgid "sys20"
+msgstr "Console-based file manager"
+
+msgid "sys21"
+msgstr "Lightweight file manager for X"
+
+msgid "sys22"
+msgstr "Deletes unneeded files"
+
+msgid "sys23"
+msgstr "Graphical file manager for X"
+
+msgid "sys24"
+msgstr "Graphical calculator application"
+
+msgid "sys25"
+msgstr "Basic cli calculator"
+
+msgid "sys26"
+msgstr "GNOME graphical package manager"
+
+msgid "sys27"
+msgstr "GNOME Software Tools"
+
+msgid "sys28"
+msgstr "NTFS drivers and utilities"
+
+msgid "sys34"
+msgstr "Screensaver for xorg"
