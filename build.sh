@@ -20,12 +20,11 @@
 # Enable tracing of what gets executed
 # set -o xtrace
 
-ROOT=$(dirname $0)
-source "$ROOT/util/opts/opts.sh" || exit
 
 WORKING_DIR="$(pwd)"
 ARCHISO_DIR=/usr/share/archiso/configs/releng
 SRC_DIR="${WORKING_DIR}"/src
+UTIL_DIR="${WORKING_DIR}"/util
 
 if [ "${IS_CONTAINER}" = "yes" ]; then
   WORKING_DIR=/archroyal
@@ -34,6 +33,8 @@ if [ "${IS_CONTAINER}" = "yes" ]; then
   # Update packages with reflector
   reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 fi
+
+. "${UTIL_DIR}"/opts/opts.sh
 
 OUTPUT_DIR=${output_dir:-"${WORKING_DIR}"/out}
 PROFILE_DIR="${WORKING_DIR}"/profile
