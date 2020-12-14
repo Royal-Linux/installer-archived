@@ -149,8 +149,8 @@ if [ -n "${docker}" ]; then
   check_root
   [ ! -d "${OUTPUT_DIR}" ] && mkdir "${OUTPUT_DIR}"
     docker build --rm -t archroyal --no-cache . &&
-    docker run --rm -v "${OUTPUT_DIR}":/archroyal/out -t -i --privileged archroyal &&
-    docker image rm archroyal
+      docker run --rm -v "${OUTPUT_DIR}":/archroyal/out -t -i --privileged archroyal &&
+      docker image rm archroyal
   exit
 fi
 

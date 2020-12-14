@@ -29,8 +29,7 @@ After flashing ArchRoyal on a USB drive, it must be booted from the machine wher
 If it has a wired internet connection, you only have to wait approximately one minute for ArchRoyal to start before
 connecting.
 If you have a wireless connection, you have two options: you normally connect to the target machine
-(requires physical access), or you must compile the installer yourself as indicated in the next step, but adding the
-file `autoconnect.sh` (it must be kept exactly the same name) along with the script `build.sh`.
+(requires physical access), or you must compile the installer yourself as indicated in the next step, but adding the file `autoconnect.sh` (it must be kept exactly the same name) along with the script `build.sh`.
 The `autoconnect.sh` file must have the following format:
 
 ```sh
