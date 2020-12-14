@@ -396,12 +396,11 @@ config_env() {
   cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/etc/skel/.face
   cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/usr/share/pixmaps
   mkdir "${ARCH}"/usr/share/backgrounds/archroyal
-  cp -r "${archroyal_directory}"/extra/wallpapers/* "${ARCH}"/usr/share/backgrounds/archroyal/
+  # cp -r "${archroyal_directory}"/extra/wallpapers/* "${ARCH}"/usr/share/backgrounds/archroyal/
 
   if [ -n "${config_env}" ]; then
-    cp -R "${archroyal_directory}/extra/desktop/${config_env}/*" -t "${ARCH}"/root
-    cp -R "${archroyal_directory}/extra/desktop/${config_env}/.config" -t "${ARCH}"/etc/skel
-
+    # cp -R "${archroyal_directory}/extra/desktop/${config_env}/*" -t "${ARCH}"/root
+    # cp -R "${archroyal_directory}/extra/desktop/${config_env}/.config" -t "${ARCH}"/etc/skel
   fi
 
   case "${config_env}" in
