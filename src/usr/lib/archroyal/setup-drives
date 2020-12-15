@@ -98,7 +98,7 @@ prepare_drives() {
           fi
         fi
 
-        source "${lang_file}"
+        source "${archroyal_directory}"/lang/load.sh
 
         if "${SWAP}"; then
           drive_var="${drive_var1}"

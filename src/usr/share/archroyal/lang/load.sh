@@ -682,7 +682,7 @@ soft_msg() {
 a="\Z2*\Zn"
 h="\Z2<\Z1#\Z2>\Zn"
 
-if "$reload" ; then
+if "$reload"; then
 	var_msg
 	load_var_msg
 	translate_this_var
