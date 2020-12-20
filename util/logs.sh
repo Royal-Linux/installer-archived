@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 blank='\e[0m'
 white="\e[1m"
-red=`tput setaf 1`
-green=`tput setaf 2`
-yellow=`tput setaf 3`
-reset=`tput sgr0`
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+reset=$(tput sgr0)
 check="✓"
 cross="✗"
 warn="⚠"
@@ -36,7 +38,7 @@ set_up_logging() {
 
 log() {
     local entry
-    read entry
+    read -r entry
     echo -e "$(date -u "+%d/%m/%Y %H:%M") : ${entry}" | tee -a "${log_file}"
 }
 
@@ -45,29 +47,29 @@ log() {
 #########################################################
 
 describe() {
-    printf "$1"
+    echo "${1}"
     dots=${2:-3}
-    for i in $(seq 1 $dots); do sleep 0.035; printf "."; done
+    for i in $(seq 1 "${dots}"); do sleep 0.035; echo "."; done
     sleep 0.035
 }
 
 log_warn() {
     message=${1:-"Warning"}
     log="$yellow$warn $message$reset\n"
-    printf " $log"
-    [ -f "$3" ] && printf "$2 $log" >> $3
+    echo " ${log}"
+    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
 }
 
 log_failed() {
     message=${1:-"Failed"}
     log="$red$cross $message$reset\n"
-    printf " $log"
-    [ -f "$3" ] && printf "$2 $log" >> $3
+    echo " ${log}"
+    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
 }
 
 log_success() {
     message=${1:-"Success"}
     log="$green$check $message$reset\n"
-    printf " $log"
-    [ -f "$3" ] && printf "$2 $log" >> $3
+    echo " ${log}"
+    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
 }

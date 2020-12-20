@@ -14,5 +14,5 @@ $ <path/to/i18n> --module=dialog --project-dir=locale --lang=en
 ```sh
 $ TEXTDOMAINDIR=./locale/dialog/dialog/locale
 $ TEXTDOMAIN=dialog
-$ echo $(gettext -s "title")
+$ echo $(gettext -s "title") | envsubst
 ```
