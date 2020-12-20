@@ -7,9 +7,7 @@
 
 translate() {
     key="$@"
-    # TODO: find a cleaner way to do env substitution
-    # eval echo -E $(gettext -s "$key")
-    echo $(gettext -s "$key")
+    echo $(gettext -s "$key") | envsubst
 }
 
 translate_this() {
