@@ -10,7 +10,7 @@ CHANGELOG="$(git log "${LAST_TAG}"..HEAD --pretty='- %s' --reverse --no-merges)"
 # Help message for the tagger
 HELP_MSG="# Clean up the commit messages or add additional info below (this line won't be visible)"
 
-[ $# -ne 1 ] && echo "Usage: $0 [TAG] (e.g. 'tag v0.1.0')" && exit 1
+[ $# -ne 1 ] && echo "Usage: $0 [TAG] (e.g. 'tag v0.1.1')" && exit 1
 TAG_NAME="$1"
 
 # Multiple messages (-m) are needed, so they are separated as paragraphs

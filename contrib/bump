@@ -10,7 +10,7 @@ CURR_LAB_VER="$(grep 'iso_label' < profiledef.sh | cut -d'=' -f2)"
 CURR_SEM_VER="$(echo "${CURR_SEM_VER}" | sed s/\"//g)"
 CURR_LAB_VER="$(echo "${CURR_LAB_VER}" | sed s/ARCHROYAL// | sed s/\"//g)"
 
-[ $# -ne 1 ] && echo "Usage: $0 [VERSION] (e.g. 'bump 0.1.0')" && exit 1
+[ $# -ne 1 ] && echo "Usage: $0 [VERSION] (e.g. 'bump 0.1.1')" && exit 1
 
 NEW_SEM_VER="$1"
 
