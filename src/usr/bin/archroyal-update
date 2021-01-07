@@ -9,7 +9,7 @@ check_connection
 tmp_dir="$(mktemp -d)"
 
 log 'Updating ArchRoyal scripts'
-git clone https://gitlab.com/archroyalinstaller/installer -b add-start-menu "${tmp_dir}" 2>&1 | log
+git clone https://github.com/ArchRoyal-Linux/installer -b add-start-menu "${tmp_dir}" 2>&1 | log
 cp -f "${tmp_dir}"/src/airootfs/usr/bin/* /usr/bin/ 2>&1 | log
 
 cp -f "${tmp_dir}"/src/airootfs/etc/archroyal.conf /etc/ 2>&1 | log
