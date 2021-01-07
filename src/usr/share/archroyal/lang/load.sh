@@ -6,8 +6,8 @@
 # * Don't edit variables within the text (e.g. /dev/${DRIVE} or ${user})
 
 translate() {
-    key="$@"
-    echo $(gettext -s "$key") | envsubst
+    key="$*"
+    gettext -s "$key" | envsubst
 }
 
 translate_this() {
@@ -444,7 +444,7 @@ de_msg() {
     de9="$(translate "de9")"
     de10="$(translate "de10")"
     de11="$(translate "de11")"
-    de12="$(translate "#de1")"
+    de12="$(translate "de1")"
     de13="$(translate "de13")"
     de14="$(translate "de14")"
     de15="$(translate "de15")"
@@ -452,7 +452,7 @@ de_msg() {
     de17="$(translate "de17")"
     de18="$(translate "de18")"
     de19="$(translate "de19")"
-    de20="$(translate "#de2")"
+    de20="$(translate "de2")"
     de21="$(translate "de21")"
     de22="$(translate "de22")"
     de23="$(translate "de23")"
@@ -596,6 +596,7 @@ soft_msg() {
     prg13="$(translate "prg13")"
     prg14="$(translate "prg14")"
     prg15="$(translate "prg15")"
+    prg16="$(translate "prg16")"
 
     # Terminal
     term0="$(translate "term0")"
@@ -644,6 +645,7 @@ soft_msg() {
     srv9="$(translate "srv9")"
     srv10="$(translate "srv10")"
     srv11="$(translate "srv11")"
+    srv12="$(translate "srv11")"
     sys1="$(translate "sys1")"
     sys10="$(translate "sys10")"
 
