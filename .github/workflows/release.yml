@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Compile project
       run: ./build.sh -d
-    - name: Download results for gRPC
+    - name: Download ISO
       uses: actions/upload-artifact@v2
       with:
         name: archroyal-release
