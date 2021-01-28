@@ -6,17 +6,21 @@
 # * Don't edit variables within the text (e.g. /dev/${DRIVE} or ${user})
 
 translate() {
-    key="$*"
-    gettext -s "$key" | envsubst
+  key="$*"
+  gettext -s "$key" | envsubst
 }
 
 translate_this() {
-    clear
+  clear
 }
 
 translate_this_var() {
-    clear
+  clear
 }
+
+start_menu_msg="ArchRoyal is an installer for the Arch Linux distribution, not a distribution based on Arch. Because you are installing Arch, you can (and should) read the Arch Wiki (wiki.archlinux.org) before reporting any post-installation issues. If an error occurs during the installation, use the command 'cat /root/archroyal.log | nc termbin.com 9999' in the terminal and share the returned URL along with a description of the issue on our Gitlab. You can talk to the developers and ArchRoyal users in our Telegram group, which is also our only official support group."
+start_menu_social="Github: https://github.com/ArchRoyal-Linux/installer\n"
+force_quit_msg="Forcefully exited installer (ctrl+c), your system is in an unknown state and the installation may not have finished yet, so your installed system might not work. Check the logs (/root/archroyal.log) for more info."
 
 ### -------------------------------------------------------------------------------------------------
 
