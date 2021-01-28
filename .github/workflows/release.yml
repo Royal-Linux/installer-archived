@@ -1,0 +1,31 @@
+name: Create release based on commit
+
+on: [push, pull_request]
+
+jobs:
+  check-commit-message:
+    name: Compile release checker
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.head_commit.message, 'Create release')
+    steps:
+      - name: Check for Resolves / Fixes
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^(Create release)$'
+          error: 'Read README.md to see the commit pattern for deployment'
+          excludeDescription: '1'
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [check-commit-message]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Compile project
+      run: ./build -d
+    - name: Download results for gRPC
+      uses: actions/upload-artifact@v2
+      with:
+        name: archroyal-release
+        path: ./out
