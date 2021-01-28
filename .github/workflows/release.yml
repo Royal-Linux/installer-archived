@@ -23,7 +23,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
     - name: Compile project
-      run: ./build -d
+      run: ./build.sh -d
     - name: Download results for gRPC
       uses: actions/upload-artifact@v2
       with:
