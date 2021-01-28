@@ -23,7 +23,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
     - name: Compile project
-      run: ./build.sh -d
+      run: sudo ./build.sh -d
     - name: Download ISO
       uses: actions/upload-artifact@v2
       with:
