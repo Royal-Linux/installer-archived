@@ -18,7 +18,7 @@ translate_this_var() {
   clear
 }
 
-start_menu_msg="ArchRoyal is an installer for the Arch Linux distribution, not a distribution based on Arch. Because you are installing Arch, you can (and should) read the Arch Wiki (wiki.archlinux.org) before reporting any post-installation issues. If an error occurs during the installation, use the command 'cat /root/archroyal.log | nc termbin.com 9999' in the terminal and share the returned URL along with a description of the issue on our Gitlab. You can talk to the developers and ArchRoyal users in our Telegram group, which is also our only official support group."
+start_menu_msg="ArchRoyal is an installer for the Arch Linux distribution, not a distribution based on Arch. Because you are installing Arch, you can (and should) read the Arch Wiki (wiki.archlinux.org) before reporting any post-installation issues. If an error occurs during the installation, use the command 'cat /root/archroyal.log | nc termbin.com 9999' in the terminal and share the returned URL along with a description of the issue on our Github."
 start_menu_social="Github: https://github.com/ArchRoyal-Linux/installer\n"
 force_quit_msg="Forcefully exited installer (ctrl+c), your system is in an unknown state and the installation may not have finished yet, so your installed system might not work. Check the logs (/root/archroyal.log) for more info."
 
@@ -71,7 +71,7 @@ main_msg() {
   wifi_msg0="$(translate "wifi_msg0")"
   wifi_msg1="$(translate "wifi_msg1")"
   connect_err0="$(translate "connect_err0")"
-  connect_err1="$(translate "connect_err1")"
+  connect_err1=$(echo -e "\n ${Red}$error ${Yellow}You must be connected to the internet to install Anarchy Linux.\n Please check your connection and try again.\n\n Show connection info: \n\n    ${Green}ip add \n    ip link \n    wifi-menu ${ColorOff}\n\n")
   locale_msg="$(translate "locale_msg")"
   zone_msg0="$(translate "zone_msg0")"
   zone_msg1="$(translate "zone_msg1")"
@@ -174,6 +174,7 @@ main_msg() {
   vm_msg="$(translate "vm_msg")"
   bluetooth_msg="$(translate "bluetooth_msg")"
   blueman_msg="$(translate "blueman_msg")"
+  retroarch_msg="$(translate "retroarch_msg")"
   btenable_msg="$(translate "btenable_msg")"
   nwmanager_msg0="$(translate "nwmanager_msg0")"
   nwmanager_msg1="$(translate "nwmanager_msg1")"
@@ -187,6 +188,7 @@ main_msg() {
   loader_msg1="$(translate "loader_msg1")"
   loader_msg2="$(translate "loader_msg2")"
   loader_msg3="$(translate "loader_msg3")"
+  loader_msg4="$(translate "loader_msg4")"
   failed_msg="$(translate "failed_msg")"
   shell_msg="$(translate "shell_msg")"
   nvidia_modeset_msg="$(translate "nvidia_modeset_msg")"
@@ -197,7 +199,6 @@ main_msg() {
   ucode_failed_msg="$(translate "ucode_failed_msg")"
   shrc_msg="$(translate "shrc_msg")"
   shrc_msg1="$(translate "shrc_msg1")"
-  shrc_msg2="$(translate "shrc_msg2")"
   shrc_msg3="$(translate "shrc_msg3")"
   shrc_msg4="$(translate "shrc_msg4")"
   nano_msg="$(translate "nano_msg")"
@@ -243,7 +244,6 @@ load_msg() {
   http_load="$(translate "http_load")"
   dm_load="$(translate "dm_load")"
   pacman_load="$(translate "pacman_load")"
-
 }
 
 part_msg() {
@@ -283,13 +283,20 @@ graphics_msg() {
   gr8="$(translate "gr8")"
   gr9="$(translate "gr9")"
   gr10="$(translate "gr10")"
-
 }
 
 menu_msg() {
   export TEXTDOMAINDIR="${archroyal_directory}"/lang/locale/menu/menu/locale
   export TEXTDOMAIN=menu
 
+  start_menu="$(translate "start_menu")"
+  start_menu0="$(translate "start_menu0")"
+  start_menu1="$(translate "start_menu1")"
+  start_menu2="$(translate "start_menu2")"
+  start_menu3="$(translate "start_menu3")"
+  start_menu4="$(translate "start_menu4")"
+  start_menu5="$(translate "start_menu5")"
+  start_menu6="$(translate "start_menu6")"
   menu="$(translate "menu")"
   menu0="$(translate "menu0")"
   menu1="$(translate "menu1")"
@@ -353,6 +360,7 @@ op_msg() {
   export TEXTDOMAIN=op
 
   welcome_op_msg="$(translate "welcome_op_msg")"
+  about_op_msg="$(translate "about_op_msg")"
   connection_op_msg="$(translate "connection_op_msg")"
   locale_op_msg="$(translate "locale_op_msg")"
   zone_op_msg="$(translate "zone_op_msg")"
@@ -526,6 +534,11 @@ soft_msg() {
   # Fonts
   font0="$(translate "font0")"
   font1="$(translate "font1")"
+  font2="$(translate "font2")"
+  font3="$(translate "font3")"
+  font4="$(translate "font4")"
+  font5="$(translate "font5")"
+  font6="$(translate "font6")"
 
   # Games
   game0="$(translate "game0")"
@@ -540,6 +553,21 @@ soft_msg() {
   game9="$(translate "game9")"
   game10="$(translate "game10")"
   game11="$(translate "game11")"
+  game12="$(translate "game12")"
+  game13="$(translate "game13")"
+  game14="$(translate "game14")"
+  game15="$(translate "game15")"
+  game16="$(translate "game16")"
+  game17="$(translate "game17")"
+  game18="$(translate "game18")"
+  game19="$(translate "game19")"
+  game20="$(translate "game20")"
+  game21="$(translate "game21")"
+  game22="$(translate "game22")"
+  game23="$(translate "game23")"
+  game24="$(translate "game24")"
+  game25="$(translate "game25")"
+  game26="$(translate "game26")"
 
   # Graphic
   graphic0="$(translate "graphic0")"
@@ -569,6 +597,7 @@ soft_msg() {
   media10="$(translate "media10")"
   media11="$(translate "media11")"
   media12="$(translate "media12")"
+  media13="$(translate "media13")"
 
   # Office
   office0="$(translate "office0")"
