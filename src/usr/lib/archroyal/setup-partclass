@@ -21,7 +21,7 @@ part_class() {
     part_menu
   elif [ "${part_type}" == "disk" ] || ( (grep -E "raid[0-9]+" <<<"${part_type}" &>/dev/null) && [ -z "${part_fs}" ]); then # Partition
 
-    source "${archroyal_directory}"/lang/load.sh
+    . "${archroyal_directory}"/lang/load.sh
 
     if (df | grep -w "${part}" | grep "${ARCH}" &>/dev/null); then
       if (yesno "\n${mount_warn_var}" "${edit}" "${cancel}" 1); then
@@ -105,7 +105,7 @@ part_class() {
               else
                 esp_part=$(fdisk -l | grep "EFI" | awk '{print $1}')
                 if ! (df -T | grep "${esp_part}" &>/dev/null); then
-                  source "${archroyal_directory}"/lang/load.sh
+                  . "${archroyal_directory}"/lang/load.sh
                   if (yesno "\n${efi_mnt_var}" "${yes}" "${no}"); then
                     if ! (mountpoint "${ARCH}"/boot &>/dev/null); then
                       mkdir "${ARCH}"/boot &>/dev/null
@@ -121,7 +121,7 @@ part_class() {
                   esp_mnt=$(df -T | grep "${esp_part}" | awk '{print $7}' | sed 's|/mnt||')
                 fi
               fi
-              source "${archroyal_directory}"/lang/load.sh
+              . "${archroyal_directory}"/lang/load.sh
               if ! (df -T | grep "${esp_part}" | grep "vfat" &>/dev/null); then
                 if (yesno "\n${vfat_var}" "${yes}" "${no}"); then
                   (
@@ -144,13 +144,13 @@ part_class() {
 
         if "${enable_f2fs}"; then
           if ! (df | grep "${ARCH}/boot\|${ARCH}/boot/efi" &>/dev/null); then
-            FS="f2fs" source "${archroyal_directory}"/lang/load.sh
+            FS="f2fs" . "${archroyal_directory}"/lang/load.sh
             msg "\n${fs_err_var}"
             part_menu
           fi
         elif "${enable_btrfs}"; then
           if ! (df | grep "${ARCH}/boot\|${ARCH}/boot/efi" &>/dev/null); then
-            FS="btrfs" source "${archroyal_directory}"/lang/load.sh
+            FS="btrfs" . "${archroyal_directory}"/lang/load.sh
             msg "\n${fs_err_var}"
             part_menu
           fi
@@ -165,7 +165,7 @@ part_class() {
     fi
 
   else # Install on a partition or md device with a file system
-    source "${archroyal_directory}"/lang/load.sh &>/dev/null
+    . "${archroyal_directory}"/lang/load.sh &>/dev/null
 
     if [ -z "${ROOT}" ]; then
       case "${part_size}" in
@@ -178,7 +178,7 @@ part_class() {
             part_menu
           fi
 
-          source "${archroyal_directory}"/lang/load.sh
+          . "${archroyal_directory}"/lang/load.sh
 
           if (yesno "\n${root_confirm_var}" "${write}" "${cancel}" 1); then
             (
@@ -320,7 +320,7 @@ part_class() {
         FS="SWAP"
       fi
 
-      source "${archroyal_directory}"/lang/load.sh
+      . "${archroyal_directory}"/lang/load.sh
 
       if [ "${mnt}" == "SWAP" ]; then
         if (yesno "\n${swap_frmt_msg}" "${yes}" "${no}"); then

@@ -9,5 +9,5 @@ ENV IS_CONTAINER="yes"
 RUN pacman -Sy --noconfirm archiso mkinitcpio-archiso reflector
 COPY assets /archroyal/assets
 COPY util /archroyal/util
-COPY src build.sh profiledef.sh /archroyal/
+COPY src archroyal-packages.x86_64 build.sh profiledef.sh /archroyal/
 ENTRYPOINT ["/archroyal/build.sh"]

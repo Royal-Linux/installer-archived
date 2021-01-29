@@ -4,25 +4,27 @@
 . libarchroyal.sh
 . /etc/archroyal.conf
 
-check_connection
+if ! is_online; then
+  wifi-menu -o
+fi
 
 tmp_dir="$(mktemp -d)"
 
 log 'Updating ArchRoyal scripts'
 git clone https://github.com/ArchRoyal-Linux/installer -b add-start-menu "${tmp_dir}" 2>&1 | log
-cp -f "${tmp_dir}"/src/airootfs/usr/bin/* /usr/bin/ 2>&1 | log
+cp -f "${tmp_dir}"/src/usr/bin/* /usr/bin/ 2>&1 | log
 
-cp -f "${tmp_dir}"/src/airootfs/etc/archroyal.conf /etc/ 2>&1 | log
-cp -f "${tmp_dir}"/src/airootfs/etc/hostname /etc/ 2>&1 | log
-cp -f "${tmp_dir}"/src/airootfs/etc/locale.gen /etc/ 2>&1 | log
-cp -f "${tmp_dir}"/src/airootfs/etc/vconsole.conf /etc/ 2>&1 | log
-cp -fr "${tmp_dir}"/src/airootfs/etc/zsh /etc/ 2>&1 | log
+cp -f "${tmp_dir}"/src/etc/archroyal.conf /etc/ 2>&1 | log
+cp -f "${tmp_dir}"/src/etc/hostname /etc/ 2>&1 | log
+cp -f "${tmp_dir}"/src/etc/locale.gen /etc/ 2>&1 | log
+cp -f "${tmp_dir}"/src/etc/vconsole.conf /etc/ 2>&1 | log
+cp -fr "${tmp_dir}"/src/etc/zsh /etc/ 2>&1 | log
 
-cp -f "${tmp_dir}"/src/airootfs/root/.dialogrc /root/ 2>&1 | log
-cp -f "${tmp_dir}"/src/airootfs/root/.zlogin /root/ 2>&1 | log
+cp -f "${tmp_dir}"/src/root/.dialogrc /root/ 2>&1 | log
+cp -f "${tmp_dir}"/src/root/.zlogin /root/ 2>&1 | log
 
-cp -f "${tmp_dir}"/src/airootfs/usr/lib/archroyal/* /usr/lib/archroyal/ 2>&1 | log
-cp -fr "${tmp_dir}"/src/airootfs/usr/share/archroyal/* /usr/share/archroyal/ 2>&1 | log
+cp -f "${tmp_dir}"/src/usr/lib/archroyal/* /usr/lib/archroyal/ 2>&1 | log
+cp -fr "${tmp_dir}"/src/usr/share/archroyal/* /usr/share/archroyal/ 2>&1 | log
 
 log 'Updating pacman keys'
 pacman-key --keyserver hkp://keyserver.ubuntu.com --init 2>&1 | log

@@ -66,7 +66,7 @@ graphics() {
     fi
   done
 
-  source "${archroyal_directory}"/lang/load.sh
+  . "${archroyal_directory}"/lang/load.sh
 
   while read -r env; do
     case "${env}" in
@@ -222,7 +222,6 @@ graphics() {
   while (true); do
     if "${VM}"; then
       case "${virt}" in
-      qemu) GPU="spice-vdagent " ;;
       vbox)
         msg "\n${vbox_msg}"
         GPU="virtualbox-guest-utils virtualbox-guest-dkms "
@@ -391,17 +390,20 @@ graphics() {
 }
 
 config_env() {
-  arch-chroot "${ARCH}" fc-cache -f
-  cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/root/.face
-  cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/etc/skel/.face
-  cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/usr/share/pixmaps
+  # arch-chroot "${ARCH}" fc-cache -f
+  # cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/root/.face
+  # cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/etc/skel/.face
+  # cp "${archroyal_directory}"/extra/archroyal-icon.png "${ARCH}"/usr/share/pixmaps
   mkdir "${ARCH}"/usr/share/backgrounds/archroyal
   # cp -r "${archroyal_directory}"/extra/wallpapers/* "${ARCH}"/usr/share/backgrounds/archroyal/
 
-  if [ -n "${config_env}" ]; then
-    # cp -R "${archroyal_directory}/extra/desktop/${config_env}/*" -t "${ARCH}"/root
-    # cp -R "${archroyal_directory}/extra/desktop/${config_env}/.config" -t "${ARCH}"/etc/skel
-  fi
+  # if [ -n "${config_env}" ]; then
+  #   de_config_dir="${archroyal_directory}/extra/desktop/${config_env}"
+  #   for i in $(ls -A "${de_config_dir}"); do
+  #     cp -R "${de_config_dir}/${i}" -t "${ARCH}"/root
+  #     cp -R "${de_config_dir}/${i}" -t "${ARCH}"/etc/skel
+  #   done
+  # fi
 
   case "${config_env}" in
   "ArchRoyal-gnome" | "ArchRoyal-budgie")
@@ -420,5 +422,5 @@ config_env() {
     ;;
   esac
 
-  log "Configured: ${config_env}"
+  echo "$(date -u "+%F %H:%M") : Configured: ${config_env}" >>"${log}"
 }

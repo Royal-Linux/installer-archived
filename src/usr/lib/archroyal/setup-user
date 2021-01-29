@@ -5,17 +5,11 @@ set_user() {
   while (true); do # Begin user menu while loop
     op_title="${user_op_msg}"
     # Create main user dialog menu from users in ${tmp_passwd} include root user
-    user=$(dialog --extra-button \
-      --extra-label "${edit}" \
-      --ok-button "${new_user}" \
-      --cancel-button "${done_msg}" \
-      --menu "${user_menu_msg}" 13 55 4 \
-            $(while IFS= read -r i ; do
-                echo "$i $(<"${tmp_passwd}" cut -d: -f1,2 | grep -w $i | cut -d: -f2)"
-            done <<<"$(sort "${tmp_passwd}" | cut -d: -f1)") \
-            "root" "${root_sh}" 3>&1 1>&2 2>&3)
-
-
+    user="$(dialog --extra-button --extra-label "${edit}" --ok-button "${new_user}" --cancel-button "${done_msg}" --menu "${user_menu_msg}" 13 55 4 \
+      $(while IFS= read -r i; do
+        echo "${i} $(<"${tmp_passwd}" cut -d: -f1,2 | grep -w "${i}" | cut -d: -f2)"
+      done <<<"$(sort "${tmp_passwd}" | cut -d: -f1)") \
+      "root" "${root_sh}" 3>&1 1>&2 2>&3)"
 
     # Check exit status of main user dialog menu
     case "$?" in
@@ -46,7 +40,7 @@ set_user() {
               msg "\n${fulluser_err_msg1}"
             else
               set_password
-              log "Add user ${user}"
+              echo "$(date -u "+%F %H:%M") : Added user: ${user}" >>"${log}"
 
               if (yesno "\n${sudo_var}" "${yes}" "${no}"); then
                 sudo_user=yes
@@ -78,14 +72,14 @@ set_user() {
         else
           sudo="${no}"
         fi
-        source "${archroyal_directory}"/lang/load.sh
+        . "${archroyal_directory}"/lang/load.sh
         paswd=$(grep <"${tmp_passwd}" -v "${user}")
 
         if [ "${user}" == "root" ]; then
           user_sh="${root_sh}"
           sudo="${yes}"
           full_user="superuser"
-          source "${archroyal_directory}"/lang/load.sh
+          . "${archroyal_directory}"/lang/load.sh
           user_edit=$(dialog --ok-button "${select}" --cancel-button "${back}" --menu "${user_edit_var}" 15 55 2 \
             "${change_pass}" "->" \
             "${change_sh}" "->" 3>&1 1>&2 2>&3)
@@ -131,7 +125,7 @@ set_user() {
               user_sh=/usr/bin/zsh
               ;;
             fish)
-              user_sh=/usr/bin/fish
+              user_sh=/bin/bash
               ;;
             *)
               user_sh=/bin/"${user_sh}"
@@ -239,7 +233,7 @@ set_hostname() {
 }
 
 set_password() {
-  source "${archroyal_directory}"/lang/load.sh
+  . "${archroyal_directory}"/lang/load.sh
   op_title="${passwd_op_msg}"
   while [ "${input}" != "${input_chk}" ]; do
     input=$(dialog --nocancel --clear --insecure --passwordbox "${user_var0}" 11 55 --stdout)
@@ -275,7 +269,7 @@ add_user() {
     (printf "${input}\n${input}" | arch-chroot "${ARCH}" passwd "${user}") &>/dev/null &
     pid=$! pri=0.1 msg="${wait_load} \n\n \Z1> \Z2passwd ${user}\Zn" load
     unset input
-    log "Set password for ${user}"
+    echo "$(date -u "+%F %H:%M") : Password set: ${user}" >>"${log}"
 
     if [ "${sudo_user}" == "yes" ]; then
       (
@@ -298,6 +292,7 @@ add_user() {
       (printf "${input}\n${input}" | arch-chroot "${ARCH}" passwd "$(cut <<<"${i}" -d: -f1)") &>/dev/null &
       pid=$! pri=0.1 msg="${wait_load} \n\n \Z1> \Z2passwd $(cut <<<"${i}" -d: -f1)\Zn" load
       unset input
+      echo "$(date -u "+%F %H:%M") : Password set: $(cut <<<"${i}" -d: -f1)" >>"${log}"
 
       if [ "$(cut <<<"${i}" -d: -f3)" == "yes" ]; then
         (

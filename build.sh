@@ -46,12 +46,44 @@ check_root() {
 
 # Check if dependencies are installed
 check_deps() {
-  if ! pacman -Qi archiso >/dev/null 2>&1 || ! pacman -Qi mkinitcpio-archiso >/dev/null 2>&1; then
-    pacman -Sy --noconfirm archiso mkinitcpio-archiso
+  echo "Checking dependencies"
+
+  if ! pacman -Qi archiso >/dev/null 2>&1; then
+    echo "'archiso' is not installed, but is required by $0, do you want to install it?"
+    echo "Install [Y/n]: "
+    read -r ans
+
+    case "${ans}" in
+    n | N | no | NO | No | nO)
+      echo "Not installing 'archiso', exiting"
+      exit
+      ;;
+    *)
+      pacman -Sy --noconfirm archiso
+      ;;
+    esac
+  fi
+
+  if ! pacman -Qi mkinitcpio-archiso >/dev/null 2>&1; then
+    echo "'mkinitcpio-archiso' is not installed, but is required by $0, do you want to install it?"
+    echo "Install [Y/n]: "
+    read -r ans
+
+    case "${ans}" in
+    n | N | no | NO | No | nO)
+      echo "Not installing 'mkinitcpio-archiso', exiting"
+      exit
+      ;;
+    *)
+      pacman -Sy --noconfirm mkinitcpio-archiso
+      ;;
+    esac
   fi
 }
 
 prepare_build_dir() {
+  echo "Preparing build directory"
+
   # Create temporary directory if not exists
   [ ! -d "${PROFILE_DIR}" ] && mkdir "${PROFILE_DIR}"
 
@@ -78,22 +110,8 @@ prepare_build_dir() {
   # Remove motd since it's not useful in ArchRoyal
   rm "${PROFILE_DIR}"/airootfs/etc/motd
 
-  # Set installer's hostname and console font
-  echo "archroyal" >"${PROFILE_DIR}"/airootfs/etc/hostname
-  echo "FONT=ter-v16n" >>"${PROFILE_DIR}"/airootfs/etc/vconsole.conf
-
   # Add archroyal packages
-  packages=(
-    'dialog'
-    'git'
-    'networkmanager'
-    'wget'
-    'zsh-syntax-highlighting'
-  )
-
-  for package in "${packages[@]}"; do
-    echo "${package}" >>"${PROFILE_DIR}"/packages.x86_64
-  done
+  cat "${WORKING_DIR}"/archroyal-packages.x86_64 >>"${PROFILE_DIR}"/packages.x86_64
 
   # Re-add custom bootloader entries
   cp -f "${WORKING_DIR}"/assets/splash.png "${PROFILE_DIR}"/syslinux/splash.png
@@ -106,6 +124,8 @@ prepare_build_dir() {
 }
 
 ssh_config() {
+  echo "Adding SSH config"
+
   # Check optional configuration file for SSH connection
   if [ -f autoconnect.sh ]; then
     . autoconnect.sh
@@ -121,11 +141,14 @@ ssh_config() {
 }
 
 geniso() {
+  echo "Generating iso"
   cd "${WORKING_DIR}" || exit
   mkarchiso -v "${PROFILE_DIR}" || exit
 }
 
 checksum_gen() {
+  echo "Generating checksum"
+
   cd "${OUTPUT_DIR}" || exit
   filename="$(basename "$(find . -name 'archroyal-*.iso')")"
 
@@ -135,6 +158,7 @@ checksum_gen() {
   fi
 
   sha512sum --tag "${filename}" >"${filename}".sha512sum || exit
+  echo "Created checksum file ${filename}.sha512sum"
 }
 
 main() {

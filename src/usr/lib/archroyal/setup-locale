@@ -1,6 +1,41 @@
 #!/usr/bin/env bash
 # Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
 
+set_keys() {
+  op_title="${key_op_msg}"
+  while (true); do
+    keyboard="$(dialog --nocancel --ok-button "${ok}" --menu "${keys_msg}" 18 60 10 \
+      "us" "United States" \
+      "de" "German" \
+      "el" "Greek" \
+      "hu" "Hungarian" \
+      "es" "Spanish" \
+      "fr" "French" \
+      "it" "Italian" \
+      "pt-latin9" "Portugal" \
+      "ro" "Romanian" \
+      "ru" "Russian" \
+      "sv" "Swedish" \
+      "uk" "United Kingdom" \
+      "slovene" "Slovenian" \
+      "${other}" "${other}-keymaps" 3>&1 1>&2 2>&3)"
+    . "${archroyal_directory}"/lang/load.sh
+
+    if [ "${keyboard}" = "${other}" ]; then
+      keyboard="$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --menu "${keys_msg}" 19 60 10 ${key_maps} 3>&1 1>&2 2>&3)"
+      if [ "$?" -eq 0 ]; then
+        break
+      fi
+    else
+      break
+    fi
+  done
+
+  localectl set-keymap "${keyboard}"
+  loadkeys "${keyboard}"
+  echo "$(date -u "+%F %H:%M") : Set keymap to: ${keyboard}" >>"${log}"
+}
+
 set_locale() {
   op_title="${locale_op_msg}"
 
@@ -37,7 +72,7 @@ set_locale() {
     fi
   done
 
-  log "Set locale to: ${LOCALE}"
+  echo "$(date -u "+%F %H:%M") : Set locale to: ${LOCALE}" >>"${log}"
 }
 
 set_zone() {
@@ -65,17 +100,32 @@ set_zone() {
     fi
   done
 
-  log "Set timezone to: ${ZONE}"
+  echo "$(date -u "+%F %H:%M") : Set timezone to: ${ZONE}" >>"${log}"
 }
 
 language() {
-  log "Start archroyal installer"
+  echo "$(date -u "+%F %H:%M") : Start archroyal installer" >"${log}"
   op_title=" -| Language Select |- "
   ILANG="$(dialog --nocancel --menu "\nArchRoyal Installer\n\n \Z2*\Zn Select your install language:" 20 60 10 \
     "English" "-" \
-    "Spanish" "Español" 3>&1 1>&2 2>&3)"
+    "Bulgarian" "Български" \
+    "Dutch" "Nederlands" \
+    "French" "Français" \
+    "German" "Deutsch" \
+    "Greek" "Greek" \
+    "Hungarian" "Magyar" \
+    "Indonesian" "bahasa Indonesia" \
+    "Italian" "Italiano" \
+    "Latvian" "Latviešu" \
+    "Lithuanian" "Lietuvių" \
+    "Polish" "Polski" \
+    "Portuguese" "Português" \
+    "Portuguese-Brazilian" "Português do Brasil" \
+    "Romanian" "Română" \
+    "Russian" "Russian" \
+    "Spanish" "Español" \
+    "Swedish" "Svenska" 3>&1 1>&2 2>&3)"
 
-  # Set the LANG variable to the correct UTF-8 locale for the language
   case "${ILANG}" in
   "English") export LANGUAGE=en; export LANG="en_US.UTF-8" ;;
   "Spanish") export LANGUAGE=es; export LANG="es_ES.UTF-8"; lib=es; bro=es-es ;;

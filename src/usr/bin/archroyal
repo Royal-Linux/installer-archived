@@ -2,69 +2,85 @@
 # Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
 
 . libarchroyal.sh
+. /etc/archroyal.conf
+. /usr/share/archroyal/lang/load.sh
 
 # Starts on bootup
 start_menu() {
   # Only run if the start menu hasn't been run already
   if [ ! -f /root/.archroyal_updated ]; then
     dialog --clear \
-      --title 'About ArchRoyal Installer' \
+      --title "${about_op_msg}" \
       --msgbox "\n${start_menu_msg}\n\n${start_menu_social}" 18 80
 
     # Ask the user what they want to do, default to updating archroyal
-    menu_choice="$(dialog --menu "What do you want to do?" 18 80 5 \
-      "Update" "Update archroyal and start the installation" \
-      "Start" "Start the installation" \
-      "Exit" "Drop into a shell (run 'archroyal' to return)" 3>&1 1>&2 2>&3)"
-
+    op_title="${welcome_op_msg}"
+    menu_choice="$(dialog --menu "${start_menu}" 12 80 5 \
+      "${start_menu1}" "${start_menu4}" \
+      "${start_menu2}" "${start_menu5}" \
+      "${start_menu3}" "${start_menu6}" 3>&1 1>&2 2>&3)"
+    if [ "$?" -ne 0 ]; then
+      menu_choice="${start_menu3}"
+    fi
     log "Start menu: chose to ${menu_choice}"
 
     case "${menu_choice}" in
     Update)
-      check_connection
+      if ! is_online; then
+        wifi-menu -o
+      fi
 
-      # Update Arch packages and keyring
+      # Download and run the update script
+      tmp_dir="$(mktemp -d)"
+      cd "${tmp_dir}" || exit
+      curl -O https://raw.githubusercontent.com/ArchRoyal-Linux/installer/master/src/usr/bin/archroyal-update
+      chmod +x archroyal-update
+      ./archroyal-update &
+
+      # Update arch packages and keyring
       log "Updating pacman keys"
-
-      (
-        pacman -Sy archlinux-keyring --noconfirm | log
-        pacman-key --keyserver hkp://keyserver.ubuntu.com --init | log
-        pacman-key --keyserver hkp://keyserver.ubuntu.com --populate archlinux | log
-        pacman-key --keyserver hkp://keyserver.ubuntu.com --refresh-keys | log
-      ) &>/dev/null &
-      pid=$! pri=0.3 msg="\n${pacman_load} \n\n \Z1> \Z2pacman-key --refresh-keys\Zn" load
-
+      pacman-key --keyserver hkp://keyserver.ubuntu.com --init 2>&1 | log
+      pacman-key --keyserver hkp://keyserver.ubuntu.com --populate archlinux 2>&1 | log
+      pacman-key --keyserver hkp://keyserver.ubuntu.com --refresh-keys 2>&1 | log
+      pacman -Sy --noconfirm 2>&1 | log
       touch /root/.archroyal_updated
       ;;
     Start) touch /root/.archroyal_updated ;; # Pretend user has updated
-    Exit) reset && exit ;;
+    Exit) exit ;;
     esac
   fi
 }
 
+dialog() {
+  # If terminal height is more than 25 lines add extra info at the top
+  if "${screen_h}"; then
+    if "${LAPTOP}"; then
+      # Show battery charge next to ArchRoyal heading
+      backtitle="${backtitle} $(acpi)"
+    fi
+
+    # op_title is the current menu title
+    /usr/bin/dialog --colors --backtitle "${backtitle}" \
+      --title "${op_title}" "$@"
+  else
+    # title is the main title (ArchRoyal)
+    /usr/bin/dialog --colors --title "${title}" "$@"
+  fi
+}
+
 init() {
-  # Execute trap when CTRL+C is pressed (SIGINT)
-  trap force_quit SIGINT
+  # Prevents the installer from exiting if Ctrl-C is pressed
+  trap '' 2
 
   archroyal_directory="/usr/share/archroyal"
-  archroyal_config="${archroyal_directory}"/etc/archroyal.conf
-  archroyal_scripts="/usr/lib/archroyal"
 
-  for script in "${archroyal_scripts}"/*; do
-    [[ -e "${script}" ]] || break
-    # shellcheck source=/usr/lib/archroyal/*
-    source "${script}"
+  for library in /usr/lib/archroyal/*; do
+    . "${library}"
   done
 
-  # shellcheck source=/etc/archroyal.conf
-  source "${archroyal_config}"
   language
-  # load lang file
-  source "${archroyal_directory}"/lang/load.sh
+  . /usr/share/archroyal/lang/load.sh
   export reload=true
-
-  # Start NetworkManager
-  systemctl start NetworkManager.service
 }
 
 main() {
@@ -74,10 +90,10 @@ main() {
     exit 1
   fi
 
-  set_keyboard_layout
   start_menu
+  set_keys
   update_mirrors
-  get_connection_info
+  check_connection
   set_locale
   set_zone
   prepare_drives

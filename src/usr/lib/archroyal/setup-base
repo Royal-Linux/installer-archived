@@ -24,7 +24,7 @@ install_base() {
 
   until "${INSTALLED}"; do
     if (yesno "\n${install_var}" "${install}" "${cancel}"); then
-      log "Begin base install"
+      echo "$(date -u "+%F %H:%M") : Begin base install" >>"${log}"
 
       if [ "${kernel}" == "linux" ]; then
         base_install="$(pacman -Sqg base linux) ${base_install}"
@@ -35,16 +35,20 @@ install_base() {
       (
         pacstrap "${ARCH}" --overwrite $(echo "${base_install}")
         echo "$?" >/tmp/ex_status
-      ) | log &
+      ) &>>"${log}" &
       pid=$! pri=$(echo "${down}" | sed 's/\..*$//') msg="\n${install_load_var}" load_log
 
       genfstab -U -p "${ARCH}" >>"${ARCH}"/etc/fstab
 
       if [ "$(</tmp/ex_status)" -eq "0" ]; then
         INSTALLED=true
-        log "Installed packages to system"
+        echo "$(date -u "+%F %H:%M") : Install Complete" >>"${log}"
+        echo "$(date -u "+%F %H:%M") : Generate fstab:\n$(<${ARCH}/etc/fstab)" >>"${log}"
       else
-        report_error
+        msg "\n${failed_msg}"
+        echo "$(date -u "+%F %H:%M") : Install failed: please report to developer" >>"${log}"
+        reset
+        tail "${log}"
         exit 1
       fi
 
@@ -56,7 +60,7 @@ install_base() {
       refind) refind_config ;;
       esac
 
-      log "Configured bootloader: ${bootloader}"
+      echo "$(date -u "+%F %H:%M") : Configured bootloader: ${bootloader}" >>"${log}"
     else
       if (yesno "\n${exit_msg}" "${yes}" "${no}"); then
         unset base_install DE
@@ -70,7 +74,7 @@ install_base() {
 install_options() {
   op_title="${install_op_msg}"
   while (true); do
-    install_opt=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --menu "${install_opt_msg}" 16 80 5 \
+    install_opt=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --menu "${install_opt_msg}" 14 80 5 \
       "ArchRoyal-Desktop" "${install_opt1}" \
       "ArchRoyal-Desktop-LTS" "${install_opt2}" \
       "ArchRoyal-Server" "${install_opt3}" \
@@ -170,7 +174,7 @@ prepare_base() {
         sh="/bin/bash" shell="bash-completion"
         ;;
       fish)
-        sh="/usr/bin/fish"
+        sh="/bin/fish"
         ;;
       zsh)
         shrc=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --menu "\n${shrc_msg}" 13 65 4 \
@@ -282,12 +286,12 @@ prepare_base() {
 
   if (yesno "\n\n${multilib_msg}" "${yes}" "${no}"); then
     multilib=true
-    log "Added multilib repository"
+    echo "$(date -u "+%F %H:%M") : Include multilib" >>"${log}"
   fi
 
   if (yesno "\n\n${dhcp_msg}" "${yes}" "${no}"); then
     dhcp=true
-    log "Enabled dhcp"
+    echo "$(date -u "+%F %H:%M") : Enable dhcp" >>"${log}"
   fi
 
   if "${wifi}"; then
@@ -295,7 +299,6 @@ prepare_base() {
   else
     if (yesno "\n${wifi_option_msg}" "${yes}" "${no}" 1); then
       base_install+="wireless_tools wpa_supplicant "
-      log "Added wireless utilities"
     fi
   fi
 
@@ -303,22 +306,22 @@ prepare_base() {
     if (yesno "\n${bluetooth_msg}" "${yes}" "${no}" 1); then
       base_install+="bluez bluez-utils pulseaudio-bluetooth "
       enable_bt=true
-      log "Added bluetooth support"
     fi
+  fi
+
+  if (yesno "\n${pppoe_msg}" "${yes}" "${no}" 1); then
+    base_install+="rp-pppoe "
   fi
 
   if (yesno "\n${os_prober_msg}" "${yes}" "${no}" 1); then
     base_install+="os-prober "
-    log "Added os-prober"
   fi
 
   if "${enable_f2fs}"; then
     base_install+="f2fs-tools "
-    log "Added f2fs-tools"
   fi
 
   if "${UEFI}"; then
     base_install+="efibootmgr "
-    log "Added efibootmgr"
   fi
 }

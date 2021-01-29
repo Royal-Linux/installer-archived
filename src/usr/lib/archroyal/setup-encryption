@@ -37,8 +37,8 @@ auto_encrypt() {
     ROOT="${DRIVE}${PART_PREFIX}2"
   fi
 
-  log "Create boot partition: ${BOOT}"
-  log "Create root partition: ${ROOT}"
+  echo "$(date -u "+%F %H:%M") : Create boot partition: ${BOOT}" >>"${log}"
+  echo "$(date -u "+%F %H:%M") : Create root partition: ${ROOT}" >>"${log}"
   (
     sgdisk --zap-all /dev/"${ROOT}"
     sgdisk --zap-all /dev/"${BOOT}"
@@ -46,20 +46,20 @@ auto_encrypt() {
     wipefs -a /dev/"${BOOT}"
   ) &>/dev/null &
   pid=$! pri=0.1 msg="\n${frmt_load} \n\n \Z1> \Z2wipefs -a /dev/${ROOT}\Zn" load
-  log "Wipe boot partition"
-  log "Wipe root partition"
+  echo "$(date -u "+%F %H:%M") : Wipe boot partition" >>"${log}"
+  echo "$(date -u "+%F %H:%M") : Wipe root partition" >>"${log}"
 
   (
     lvm pvcreate /dev/"${ROOT}"
     lvm vgcreate lvm /dev/"${ROOT}"
   ) &>/dev/null &
   pid=$! pri=0.1 msg="\n${pv_load} \n\n \Z1> \Z2lvm pvcreate /dev/${ROOT}\Zn" load
-  log "Create physical root volume: /dev/${ROOT}"
+  echo "$(date -u "+%F %H:%M") : Create physical root volume: /dev/${ROOT}" >>"${log}"
 
   if "${SWAP}"; then
     lvm lvcreate -L "${SWAPSPACE}M" -n swap lvm &>/dev/null &
     pid=$! pri=0.1 msg="\n${swap_load} \n\n \Z1> \Z2lvm lvcreate -L ${SWAPSPACE}M -n swap lvm\Zn" load
-    log "Create logical swapspace"
+    echo "$(date -u "+%F %H:%M") : Create logical swapspace" >>"${log}"
   fi
 
   (
@@ -67,15 +67,15 @@ auto_encrypt() {
     lvm lvcreate -l 100%FREE -n lvroot lvm
   ) &>/dev/null &
   pid=$! pri=0.1 msg="\n${lv_load} \n\n \Z1> \Z2lvm lvcreate -l 100%FREE -n lvroot lvm\Zn" load
-  log "Create logical root volume: lvroot"
-  log "Create logical tmp filesystem: tmp"
+  echo "$(date -u "+%F %H:%M") : Create logical root volume: lvroot" >>"${log}"
+  echo "$(date -u "+%F %H:%M") : Create logical tmp filesystem: tmp" >>"${log}"
 
   (
     printf "%s" "${input}" | cryptsetup luksFormat -c aes-xts-plain64 -s 512 /dev/lvm/lvroot -
     printf "%s" "${input}" | cryptsetup open --type luks /dev/lvm/lvroot root -
   ) &>/dev/null &
   pid=$! pri=0.2 msg="\n${encrypt_load} \n\n \Z1> \Z2cryptsetup luksFormat -c aes-xts-plain64 -s 512 /dev/lvm/lvroot\Zn" load
-  log "Encrypt logical volume: lvroot"
+  echo "$(date -u "+%F %H:%M") : Encrypt logical volume: lvroot" >>"${log}"
   unset input input_chk
   input_chk=default
   wipefs -a /dev/mapper/root &>/dev/null
@@ -89,18 +89,18 @@ auto_encrypt() {
     ;;
   esac
   pid=$! pri=1 msg="\n${load_var1} \n\n \Z1> \Z2mkfs.${FS} /dev/mapper/root\Zn" load
-  log "Create root filesystem: ${FS}"
+  echo "$(date -u "+%F %H:%M") : Create root filesystem: ${FS}" >>"${log}"
 
   if "${UEFI}"; then
     mkfs.vfat -F32 /dev/"${BOOT}" &>/dev/null &
     pid=$! pri=0.2 msg="\n${efi_load1} \n\n \Z1> \Z2mkfs.vfat -F32 /dev/${BOOT}\Zn" load
     esp_part="/dev/${BOOT}"
     esp_mnt=/boot
-    log "Create boot filesystem: vfat"
+    echo "$(date -u "+%F %H:%M") : Create boot filesystem: vfat" >>"${log}"
   else
     mkfs.ext4 -O \^64bit /dev/"${BOOT}" &>/dev/null &
     pid=$! pri=0.2 msg="\n${boot_load} \n\n \Z1> \Z2mkfs.ext4 /dev/${BOOT}\Zn" load
-    log "Create boot filesystem: ext4"
+    echo "$(date -u "+%F %H:%M") : Create boot filesystem: ext4" >>"${log}"
   fi
 
   (
@@ -110,8 +110,8 @@ auto_encrypt() {
     mount /dev/"${BOOT}" "${ARCH}"/boot
   ) &>/dev/null &
   pid=$! pri=0.1 msg="\n${mnt_load} \n\n \Z1> \Z2mount /dev/mapper/root ${ARCH}\Zn" load
-  log "Mount root filesystem: ${ARCH}"
-  log "Mount boot filesystem: ${ARCH}/boot"
+  echo "$(date -u "+%F %H:%M") : Mount root filesystem: ${ARCH}" >>"${log}"
+  echo "$(date -u "+%F %H:%M") : Mount boot filesystem: ${ARCH}/boot" >>"${log}"
 
   if [ "$(</tmp/ex_status.var)" -eq "0" ]; then
     mounted=true

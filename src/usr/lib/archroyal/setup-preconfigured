@@ -12,22 +12,19 @@ quick_install() {
     multilib=true
     dhcp=false
     desktop=true
-    base_install="base-devel linux linux-headers zsh zsh-syntax-highlighting grub dialog networkmanager wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} ${UCODE} "
+    base_install="base-devel linux linux-headers zsh zsh-syntax-highlighting grub dialog networkmanager wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} "
 
     if "${bluetooth}"; then
       base_install+="bluez bluez-utils pulseaudio-bluetooth "
       enable_bt=true
-      log "Added bluetooth support"
     fi
 
     if "${enable_f2fs}"; then
       base_install+="f2fs-tools "
-      log "Added f2fs-tools"
     fi
 
     if "${UEFI}"; then
       base_install+="efibootmgr "
-      log "Added efibootmgr"
     fi
 
     quick_desktop
@@ -43,22 +40,19 @@ quick_install() {
     multilib=true
     dhcp=false
     desktop=true
-    base_install="base-devel linux-lts linux-lts-headers zsh zsh-syntax-highlighting grub dialog networkmanager wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} ${UCODE} "
+    base_install="base-devel linux-lts linux-lts-headers zsh zsh-syntax-highlighting grub dialog networkmanager wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} "
 
     if "${bluetooth}"; then
       base_install+="bluez bluez-utils pulseaudio-bluetooth "
       enable_bt=true
-      log "Added bluetooth support"
     fi
 
     if "${enable_f2fs}"; then
       base_install+="f2fs-tools "
-      log "Added f2fs-tools"
     fi
 
     if "${UEFI}"; then
       base_install+="efibootmgr "
-      log "Added efibootmgr"
     fi
 
     quick_desktop
@@ -73,22 +67,19 @@ quick_install() {
     enable_nm=true
     multilib=true
     dhcp=false
-    base_install="base-devel linux openssh linux-headers zsh zsh-syntax-highlighting grub dialog wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} ${UCODE} "
+    base_install="base-devel linux openssh linux-headers zsh zsh-syntax-highlighting grub dialog wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} "
 
     if "${bluetooth}"; then
       base_install+="bluez bluez-utils pulseaudio-bluetooth "
       enable_bt=true
-      log "Added bluetooth support"
     fi
 
     if "${enable_f2fs}"; then
       base_install+="f2fs-tools "
-      log "Added f2fs-tools"
     fi
 
     if "${UEFI}"; then
       base_install+="efibootmgr "
-      log "Added efibootmgr"
     fi
     ;;
   ArchRoyal-Server-LTS)
@@ -100,22 +91,19 @@ quick_install() {
     enable_nm=true
     multilib=true
     dhcp=false
-    base_install="base-devel openssh linux-lts linux-lts-headers zsh zsh-syntax-highlighting grub dialog wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} ${UCODE} "
+    base_install="base-devel openssh linux-lts linux-lts-headers zsh zsh-syntax-highlighting grub dialog wireless_tools wpa_supplicant os-prober dhcpcd ${base_defaults} "
 
     if "${bluetooth}"; then
       base_install+="bluez bluez-utils pulseaudio-bluetooth "
       enable_bt=true
-      log "Added bluetooth support"
     fi
 
     if "${enable_f2fs}"; then
       base_install+="f2fs-tools "
-      log "Added f2fs-tools"
     fi
 
     if "${UEFI}"; then
       base_install+="efibootmgr "
-      log "Added efibootmgr"
     fi
     ;;
   esac
@@ -170,25 +158,17 @@ quick_desktop() {
   while (true); do
     if "${VM}"; then
       case "${virt}" in
-      qemu)
-        GPU="spice-vdagent"
-        log "Added QEMU guest utils"
-        ;;
       vbox)
-        GPU="virtualbox-guest-utils virtualbox-guest-dkms"
-        log "Added VirtualBox guest utils"
+        GPU="virtualbox-guest-utils virtualbox-guest-dkms "
         ;;
       vmware)
         GPU="xf86-video-vmware xf86-input-vmmouse open-vm-tools net-tools gtkmm mesa mesa-libgl"
-        log "Added VMWare guest utils"
         ;;
       hyper-v)
         GPU="xf86-video-fbdev mesa-libgl"
-        log "Added HyperV guest utils"
         ;;
       *)
         GPU="xf86-video-fbdev mesa-libgl"
-        log "Added generic VM guest utils"
         ;;
       esac
       break
@@ -214,5 +194,4 @@ quick_desktop() {
 
   DM="lightdm"
   enable_dm=true
-  log "Enabled lightdm"
 }

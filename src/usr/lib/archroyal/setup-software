@@ -60,6 +60,11 @@ add_software() {
         if [ "$?" -gt "0" ]; then
           add_soft=false
         fi
+
+       	if (grep "pianobar" <<<"${software}" &>/dev/null); then
+            config_piano=true
+        fi
+
         ;;
       "${database}")
         software=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --checklist "${software_msg1}" 20 63 10 \
@@ -105,18 +110,39 @@ add_software() {
       "${fonts}")
         software=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --checklist "${software_msg1}" 20 63 10 \
           "bdf-unifont" "${font0}" OFF \
-          "noto-fonts-cjk" "${font1}" OFF 3>&1 1>&2 2>&3)
+	  "gnu-free-fonts" "${font2}" OFF \
+          "noto-fonts-cjk" "${font1}" OFF \
+	  "ttf-droid" "${font3}" OFF \
+	  "ttf-hack" "${font4}" OFF \
+	  "ttf-liberation" "${font5}" OFF \
+	  "ttf-roboto" "${font6}" OFF \
+	  "ttf-roboto-mono" "${font7}" OFF 3>&1 1>&2 2>&3)
         if [ "$?" -gt "0" ]; then
           add_soft=false
         fi
         ;;
       "${games}")
         software=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --checklist "${software_msg1}" 20 70 10 \
-          "aisleriot" "${game11}" OFF \
+          "0ad" "${game25}" OFF \
+          "abuse" "${game22}" OFF \
+	  "aisleriot" "${game11}" OFF \
+	  "astromenace" "${game23}" OFF \
           "bsd-games" "${game1}" OFF \
           "bzflag" "${game2}" OFF \
+	  "dolphin-emu" "${game13}" OFF \
+	  "dosbox" "${game19}" OFF \
           "gnuchess" "${game4}" OFF \
-          "steam" "${game10}" OFF \
+	  "kapman" "${game24}" OFF \
+	  "lutris" "${game26}" OFF \
+	  "mame" "${game20}" OFF \
+	  "mednafen" "${game15}" OFF \
+	  "mupen64plus" "${game14}" OFF \
+	  "pcsx2" "${game16}" OFF \
+	  "ppsspp" "${game17}" OFF \
+          "retroarch" "${game12}" OFF \
+	  "scummvm" "${game21}" OFF \
+	  "snes9x-gtk" "${game18}" OFF \
+	  "steam" "${game10}" OFF \
           "supertux" "${game5}" OFF \
           "supertuxkart" "${game6}" OFF \
           "warsow" "${game8}" OFF \
@@ -135,7 +161,7 @@ add_software() {
                 break
               fi
             else
-              software+=" steam-native-runtime ttf-liberation"
+              software+=" steam ttf-liberation"
               cat /etc/pacman.conf | sed -e "/\[multilib\]/,/Include/"'s/^#//' | cat >/etc/pacman.conf.bak
               cp /etc/pacman.conf.bak /etc/pacman.conf
 
@@ -145,6 +171,12 @@ add_software() {
               break
             fi
           done
+        fi
+
+	if (grep "retroarch" <<<"${software}" &>/dev/null); then
+          if (yesno "\n${retroarch_msg}" "${yes}" "${no}"); then
+            software+=" libretro"
+          fi
         fi
         ;;
       "${graphic}")
@@ -169,6 +201,7 @@ add_software() {
           "byzanz" "${media10}" OFF \
           "handbrake" "${media0}" OFF \
           "kdenlive" "${media9}" OFF \
+	  "kodi" "$media13" OFF \
           "mplayer" "${media1}" OFF \
           "mpv" "${media7}" OFF \
           "multimedia-codecs" "${media8}" OFF \
@@ -230,7 +263,6 @@ add_software() {
           "php" "${prg10}" OFF \
           "python" "${prg11}" OFF \
           "ruby" "${prg12}" OFF \
-          "rustup" "${prg16}" OFF \
           "scala" "${prg13}" OFF 3>&1 1>&2 2>&3)
         if [ "$?" -gt "0" ]; then
           add_soft=false
@@ -344,7 +376,6 @@ add_software() {
             fi
           fi
         fi
-
         ;;
       "${util}")
         software=$(dialog --ok-button "${ok}" --cancel-button "${cancel}" --checklist "${software_msg1}" 20 65 10 \
@@ -369,7 +400,7 @@ add_software() {
           "virtualbox" "${sys16}" OFF \
           "ufw" "${sys17}" OFF \
           "wget" "${sys18}" OFF \
-          "xscreensaver" "${sys34}" OFF 3>&1 1>&2 2>&3)
+	  "xscreensaver" "${sys34}" OFF 3>&1 1>&2 2>&3)
         if [ "$?" -gt "0" ]; then
           add_soft=false
         fi
@@ -494,12 +525,12 @@ add_software() {
           download_list=$(echo "${download}" | sed -e 's/^[ \t]*//')
 
           if ! "${menu_enter}"; then
-            log "Add software list: ${download}"
+            echo "$(date -u "+%F %H:%M") : Add software list: ${download}" >>"${log}"
             base_install+="${download_list} "
             unset final_software
             break
           else
-            pacman -Sy --print-format='%s' "${download}" | awk '{s+=$1} END {print s/1024/1024}' >/tmp/size &
+            pacman -Sy --print-format='%s' $(echo "${download}") | awk '{s+=$1} END {print s/1024/1024}' >/tmp/size &
             pid=$! pri=0.1 msg="${wait_load} \n\n \Z1> \Z2pacman -S --print-format\Zn" load
             download_size=$(</tmp/size)
             rm /tmp/size
@@ -516,10 +547,10 @@ add_software() {
             fi
 
             if (yesno "\n${software_confirm_var1}" "${install}" "${cancel}"); then
-              arch-chroot "${ARCH}" pacman --noconfirm -Sy archlinux-keyring | log &
-              arch-chroot "${ARCH}" pacman --noconfirm -Sy "${download}" | log &
+              arch-chroot "${ARCH}" pacman --noconfirm -Sy archlinux-keyring &>>"${log}" &
+              arch-chroot "${ARCH}" pacman --noconfirm -Sy "${download}" &>>"${log}" &
               pid=$! pri=$(sed <<<"${down}" 's/\..*$//') msg="\n${software_load_var}" load_log
-              log "Finished installing software"
+              echo "$(date -u "+%F %H:%M") : Finished installing software" >>"${log}"
               unset final_software
               break
             else
@@ -540,14 +571,14 @@ add_software() {
         else
           add_software=$(echo "${software}" | sed 's/\"//g')
           software_list=$(echo "${add_software}" | sed -e 's/^[ \t]*//')
-          pacman -Sy --print-format='%s' "${add_software}" | awk '{s+=$1} END {print s/1024/1024}' >/tmp/size &
+	  pacman -Sy --print-format='%s' $(echo "${add_software}") | awk '{s+=$1} END {print s/1024/1024}' >/tmp/size &
           pid=$! pri=0.1 msg="${wait_load} \n\n \Z1> \Z2pacman -Sy --print-format\Zn" load
 
           download_size=$(</tmp/size)
           rm /tmp/size
           software_size=$(sed <<<"${download_size}" 's/\(\..\)\(.*\)/\1 MiB/')
           software_int=$(echo "${add_software}" | wc -w)
-          source "${archroyal_directory}"/lang/load.sh
+          . "${archroyal_directory}"/lang/load.sh
 
           if [ "${software_int}" -lt "15" ]; then
             height=14
