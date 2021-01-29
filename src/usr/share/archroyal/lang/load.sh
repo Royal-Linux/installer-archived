@@ -712,8 +712,8 @@ soft_msg() {
   sys34="$(translate "sys34")"
 }
 
-a="\Z2*\Zn"
-h="\Z2<\Z1#\Z2>\Zn"
+export a="\Z2*\Zn"
+export h="\Z2<\Z1#\Z2>\Zn"
 
 if "${reload}"; then
   var_msg
