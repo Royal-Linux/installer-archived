@@ -71,7 +71,7 @@ main_msg() {
   wifi_msg0="$(translate "wifi_msg0")"
   wifi_msg1="$(translate "wifi_msg1")"
   connect_err0="$(translate "connect_err0")"
-  connect_err1=$(echo -e "\n ${Red}$error ${Yellow}You must be connected to the internet to install Anarchy Linux.\n Please check your connection and try again.\n\n Show connection info: \n\n    ${Green}ip add \n    ip link \n    wifi-menu ${ColorOff}\n\n")
+  connect_err1="$(translate "connect_err1")"
   locale_msg="$(translate "locale_msg")"
   zone_msg0="$(translate "zone_msg0")"
   zone_msg1="$(translate "zone_msg1")"
