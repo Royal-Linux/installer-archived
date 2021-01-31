@@ -125,6 +125,18 @@ msgstr "Unable to connect to wifi network, exiting installer."
 msgid "connect_err0"
 msgstr "$error No network connection exiting installer."
 
+msgid "connect_err1"
+msgstr ""
+"${Red}$error ${Yellow}You must be connected to the internet to install Anarchy Linux.\n"
+"Please check your connection and try again.\n"
+"\n"
+"Show connection info: \n"
+"\n"
+"    ${Green}ip add \n"
+"    ip link \n"
+"    wifi-menu ${ColorOff}\n"
+"\n"
+
 msgid "locale_msg"
 msgstr "Please select your desired locale:"
 
@@ -697,6 +709,12 @@ msgstr ""
 "\n"
 " $a Select 'yes' to install graphical bluetooth manager."
 
+msgid "retroarch_msg"
+msgstr ""
+"Install Retroarch cores from (libretro) group? \n"
+"\n"
+" $a Select 'yes' to install libretro cores."
+
 msgid "btenable_msg"
 msgstr "Enabling bluetooth..."
 
@@ -750,6 +768,9 @@ msgstr "Systemd Bootloader"
 
 msgid "loader_msg3"
 msgstr "EFISTUB Bootloader"
+
+msgid "loader_msg4"
+msgstr "rEFInd Bootloader"
 
 msgid "failed_msg"
 msgstr ""

@@ -12,6 +12,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "start_menu"
+msgstr ""
+"\n"
+"$a Select an option to begin: "
+
+msgid "start_menu1"
+msgstr "Update"
+
+msgid "start_menu2"
+msgstr "Start"
+
+msgid "start_menu3"
+msgstr "Exit"
+
+msgid "start_menu4"
+msgstr "Update anarchy and start the installation"
+
+msgid "start_menu5"
+msgstr "Start the installation"
+
+msgid "start_menu6"
+msgstr "Exit the installer and be dropped into a shell"
+
 msgid "menu"
 msgstr ""
 "Menu Items: \n"
