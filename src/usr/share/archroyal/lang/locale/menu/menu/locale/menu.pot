@@ -30,7 +30,7 @@ msgid "start_menu3"
 msgstr "Exit"
 
 msgid "start_menu4"
-msgstr "Update anarchy and start the installation"
+msgstr "Update archroyal and start the installation"
 
 msgid "start_menu5"
 msgstr "Start the installation"

@@ -16,7 +16,7 @@ msgid "welcome_op_msg"
 msgstr " -| ArchRoyal Linux |- "
 
 msgid "about_op_msg"
-msgstr " -| About Anarchy Installer |- "
+msgstr " -| About ArchRoyal Installer |- "
 
 msgid "connection_op_msg"
 msgstr " -| Check Connection |- "
