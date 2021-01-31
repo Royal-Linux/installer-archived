@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-07 13:25-0300\n"
+"POT-Creation-Date: 2021-01-31 01:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "start_menu"
+msgstr "$a Select an option to begin: "
+
+msgid "start_menu1"
+msgstr "Update"
+
+msgid "start_menu2"
+msgstr "Start"
+
+msgid "start_menu3"
+msgstr "Exit"
+
+msgid "start_menu4"
+msgstr "Update anarchy and start the installation"
+
+msgid "start_menu5"
+msgstr "Start the installation"
+
+msgid "start_menu6"
+msgstr "Exit the installer and be dropped into a shell"
 
 msgid "menu"
 msgstr ""

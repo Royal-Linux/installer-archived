@@ -214,7 +214,6 @@ msgstr "3D and historically-based strategy game"
 msgid "game26"
 msgstr "Game manager for Linux-based operating systems"
 
-
 msgid "graphic0"
 msgstr "3D graphics creation suite"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-07 13:49-0300\n"
+"POT-Creation-Date: 2021-01-31 01:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,6 +134,24 @@ msgstr "Unicode fonts"
 msgid "font1"
 msgstr "Fonts which support CN, JP, KR"
 
+msgid "font2"
+msgstr "A free family of scalable outline fonts"
+
+msgid "font3"
+msgstr "Fonts by Google as part of Android"
+
+msgid "font4"
+msgstr "A hand groomed and optically balanced typeface"
+
+msgid "font5"
+msgstr "Red Hats Liberation fonts"
+
+msgid "font6"
+msgstr "Google's signature family of fonts"
+
+msgid "font7"
+msgstr "A monospaced addition to the Roboto type family"
+
 msgid "game0"
 msgstr "Free FPS focused mainly on online multiplayer"
 
@@ -169,6 +187,51 @@ msgstr "Valve's digital software delivery system"
 
 msgid "game11"
 msgstr "AisleRiot Solitaire collection"
+
+msgid "game12"
+msgstr "Front-end for video game system emulators"
+
+msgid "game13"
+msgstr "Very capable GameCube and Wii emulator"
+
+msgid "game14"
+msgstr "Highly compatible Nintendo 64 emulator"
+
+msgid "game15"
+msgstr "Command-line driven multisystem emulator"
+
+msgid "game16"
+msgstr "Playstation 2 emulator"
+
+msgid "game17"
+msgstr "PlayStation Portable emulator"
+
+msgid "game18"
+msgstr "Super Nintendo Entertainment System emulator"
+
+msgid "game19"
+msgstr "Open-source DOS emulator"
+
+msgid "game20"
+msgstr "Multiple Arcade Machine Emulator"
+
+msgid "game21"
+msgstr "Virtual machine for old school adventures"
+
+msgid "game22"
+msgstr "Side-scroller action game"
+
+msgid "game23"
+msgstr "Modern 3D scrolling space shooter"
+
+msgid "game24"
+msgstr "A clone of PacMan"
+
+msgid "game25"
+msgstr "3D and historically-based strategy game"
+
+msgid "game26"
+msgstr "Game manager for Linux-based operating systems"
 
 msgid "graphic0"
 msgstr "3D graphics creation suite"
@@ -244,6 +307,9 @@ msgstr "Powerful and simple media player"
 
 msgid "media12"
 msgstr "Download videos and audio from YouTube"
+
+msgid "media13"
+msgstr "Open source media player and entertainment hub"
 
 msgid "office0"
 msgstr "Free word processing"
