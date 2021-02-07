@@ -69,8 +69,8 @@ dialog() {
 }
 
 init() {
-  # Prevents the installer from exiting if Ctrl-C is pressed
-  trap '' 2
+  # Execute trap when CTRL+C is pressed (SIGINT)
+  trap force_quit SIGINT
 
   archroyal_directory="/usr/share/archroyal"
 
