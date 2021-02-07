@@ -99,7 +99,7 @@ prepare_build_dir() {
   cp -f "${WORKING_DIR}"/assets/splash.png "${PROFILE_DIR}"/airootfs/usr/share/archroyal/boot/splash.png
 
   # Copy ArchRoyal logo to extras
-  # cp -f "${WORKING_DIR}"/assets/logo.png "${PROFILE_DIR}"/airootfs/usr/share/archroyal/extra/archroyal-icon.png
+  cp -f "${WORKING_DIR}"/assets/logo.png "${PROFILE_DIR}"/airootfs/usr/share/archroyal/extra/archroyal-icon.png
 
   echo "archroyal" >>"${PROFILE_DIR}"/airootfs/root/.zlogin
 
