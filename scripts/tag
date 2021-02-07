@@ -14,5 +14,5 @@ HELP_MSG="# Clean up the commit messages or add additional info below (this line
 TAG_NAME="$1"
 
 # Multiple messages (-m) are needed, so they are separated as paragraphs
-git tag -a -s -m "${HELP_MSG}" -m "Changelog:" -m "${CHANGELOG}" -e "${TAG_NAME}"
+git tag -a -m "${HELP_MSG}" -m "Changelog:" -m "${CHANGELOG}" -e "${TAG_NAME}"
 echo "Added tag ${TAG_NAME}."
