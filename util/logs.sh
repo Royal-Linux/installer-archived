@@ -47,29 +47,30 @@ log() {
 #########################################################
 
 describe() {
-    echo "${1}"
+    printf "%s" "$1"
     dots=${2:-3}
-    for i in $(seq 1 "${dots}"); do sleep 0.035; echo "."; done
+    for i in $(seq 1 "${dots}"); do sleep 0.035; printf "."; done
     sleep 0.035
 }
 
 log_warn() {
     message=${1:-"Warning"}
-    log="$yellow$warn $message$reset\n"
-    echo " ${log}"
-    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
+    log="${YELLOW}${WARN} ${message}${RESET}"
+    printf " %s\n" "${log}"
+    [ -f "$3" ] && printf "%s %s\n" "$2" "${log}" >> "$3"
 }
 
 log_failed() {
     message=${1:-"Failed"}
-    log="$red$cross $message$reset\n"
-    echo " ${log}"
-    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
+    log="${RED}${CROSS} ${message}${RESET}"
+    printf " %s\n" "${log}"
+    [ -f "$3" ] && printf "%s %s\n" "$2" "${log}" >> "$3"
 }
 
 log_success() {
     message=${1:-"Success"}
-    log="$green$check $message$reset\n"
-    echo " ${log}"
-    [ -f "${3}" ] && echo "${2} ${log}" >> "${3}"
+    log="${GREEN}${CHECK} ${message}${RESET}"
+    printf " %s\n" "${log}"
+    [ -f "$3" ] && printf "%s %s\n" "$2" "${log}" >> "$3"
 }
+
