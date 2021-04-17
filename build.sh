@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 ## Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
-## Licensed under GPL v3.0
+## This project is based on Anarchy - Copyright (C) 2017 Dylan Schacht
+## Licensed under GPL v2.0
 ##
 ##     @script.name [OPTION] ARGUMENTS...
 ##

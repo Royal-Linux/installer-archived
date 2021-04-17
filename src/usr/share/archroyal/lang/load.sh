@@ -1,3 +1,5 @@
+# Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
+
 # Important:
 # * Make sure you are using the UTF-8 encoding
 # * Don't change the variable names (e.g. intro_msg=)

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Copyright (C) 2020 Ulises Jeremias Cornejo Fandos
+
+# Based on: https://gitlab.com/anarchyinstaller/installer
+# Last commit: https://gitlab.com/anarchyinstaller/installer/-/commit/3a92bf958f5ccc62d25516e04293cf57a7c6c9ea
+# Copyright (C) 2017 Dylan Schacht - Licensed under GNU GPLv2
+# Updated by Ulises Jeremias Cornejo Fandos
 
 update_mirrors() {
   for interface in $(ls /sys/class/net/ | grep -v "lo\|vir"); do
