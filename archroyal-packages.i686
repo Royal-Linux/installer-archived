@@ -1,0 +1,10 @@
+acpi
+curl
+dialog
+git
+netctl
+networkmanager
+pacman-contrib
+terminus-font
+wget
+zsh-syntax-highlighting
